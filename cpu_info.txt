@@ -1,0 +1,1216 @@
+module: cpu_info                        instance: 0     
+name:   cpu_info0                       class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         0
+	core_id                         0
+	cpu_type                        i386
+	crtime                          350453.637568404
+	cstates_count                   509375762:6945170:515728737
+	cstates_nsec                    4503233920167259:1573784696024:723767385776417
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           4
+	pkg_core_id                     0
+	pstates_count                   2699434:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2699434
+	pstates_nsec                    4504516921597009:0:0:0:0:0:0:0:0:0:0:0:0:0:0:360261240000158
+	snaptime                        4864778.15947231
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409741
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 1     
+name:   cpu_info1                       class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         2
+	core_id                         1
+	cpu_type                        i386
+	crtime                          350456.270081268
+	cstates_count                   24552720:6666800:31087896
+	cstates_nsec                    4504760135745109:1574868941567:709344238523258
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           7
+	pkg_core_id                     1
+	pstates_count                   574665:0:0:0:0:0:0:0:0:0:0:0:0:0:0:574665
+	pstates_nsec                    4502837400454595:0:0:0:0:0:0:0:0:0:0:0:0:0:0:361940761575094
+	snaptime                        4864778.15990463
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409743
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 2     
+name:   cpu_info2                       class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         4
+	core_id                         2
+	cpu_type                        i386
+	crtime                          350456.30776598
+	cstates_count                   62230022:1545118:63504182
+	cstates_nsec                    4504990938013717:465670666766:710862131747493
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           10
+	pkg_core_id                     2
+	pstates_count                   2974337:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2974337
+	pstates_nsec                    4504670207298513:0:0:0:0:0:0:0:0:0:0:0:0:0:0:360107955059126
+	snaptime                        4864778.16023302
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409743
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 3     
+name:   cpu_info3                       class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         6
+	core_id                         3
+	cpu_type                        i386
+	crtime                          350456.335085609
+	cstates_count                   15985035:1560661:17415876
+	cstates_nsec                    4506236142161954:392988808237:708954954709240
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           13
+	pkg_core_id                     3
+	pstates_count                   601562:0:0:0:0:0:0:0:0:0:0:0:0:0:0:601562
+	pstates_nsec                    4503869197662610:0:0:0:0:0:0:0:0:0:0:0:0:0:0:360908965032017
+	snaptime                        4864778.16056967
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409743
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 4     
+name:   cpu_info4                       class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         8
+	core_id                         4
+	cpu_type                        i386
+	crtime                          350456.366113262
+	cstates_count                   58352304:2247565:60342251
+	cstates_nsec                    4505296345567098:327809754931:710566063934493
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           16
+	pkg_core_id                     4
+	pstates_count                   2972968:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2972968
+	pstates_nsec                    4504867004278687:0:0:0:0:0:0:0:0:0:0:0:0:0:0:359911158726568
+	snaptime                        4864778.16088021
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409743
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 5     
+name:   cpu_info5                       class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         10
+	core_id                         5
+	cpu_type                        i386
+	crtime                          350456.397086576
+	cstates_count                   16099910:1886039:17841466
+	cstates_nsec                    4506279802123749:401975623069:708903322085743
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           19
+	pkg_core_id                     5
+	pstates_count                   562846:0:0:0:0:0:0:0:0:0:0:0:0:0:0:562846
+	pstates_nsec                    4503408676920816:0:0:0:0:0:0:0:0:0:0:0:0:0:0:361369486418961
+	snaptime                        4864778.16121437
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409743
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 6     
+name:   cpu_info6                       class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         12
+	core_id                         6
+	cpu_type                        i386
+	crtime                          350456.426896063
+	cstates_count                   61273253:2206817:63202860
+	cstates_nsec                    4504795099068576:293346683914:711136378086393
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           22
+	pkg_core_id                     6
+	pstates_count                   2879650:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2879650
+	pstates_nsec                    4504136604341193:0:0:0:0:0:0:0:0:0:0:0:0:0:0:360641559308224
+	snaptime                        4864778.16152417
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409743
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 7     
+name:   cpu_info7                       class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         14
+	core_id                         7
+	cpu_type                        i386
+	crtime                          350456.455058801
+	cstates_count                   23835911:2164673:25837100
+	cstates_nsec                    4506083178987543:396287162168:709307781525532
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           25
+	pkg_core_id                     7
+	pstates_count                   556498:0:0:0:0:0:0:0:0:0:0:0:0:0:0:556498
+	pstates_nsec                    4503130462492182:0:0:0:0:0:0:0:0:0:0:0:0:0:0:361647701483285
+	snaptime                        4864778.16185021
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409743
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 8     
+name:   cpu_info8                       class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         0
+	core_id                         16
+	cpu_type                        i386
+	crtime                          350456.484910676
+	cstates_count                   15526971:1395182:16802375
+	cstates_nsec                    4505327026219594:334591392259:709862750971633
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           30
+	pkg_core_id                     0
+	pstates_count                   1300967:0:0:0:0:0:0:0:0:0:0:0:0:0:0:1300967
+	pstates_nsec                    4488661013046328:0:0:0:0:0:0:0:0:0:0:0:0:0:0:376117151237531
+	snaptime                        4864778.16216123
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409743
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 9     
+name:   cpu_info9                       class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         2
+	core_id                         17
+	cpu_type                        i386
+	crtime                          350456.517204334
+	cstates_count                   62876113:1341336:63927292
+	cstates_nsec                    4503316101630973:397479929630:712484503027118
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           33
+	pkg_core_id                     1
+	pstates_count                   4173941:0:0:0:0:0:0:0:0:0:0:0:0:0:0:4173941
+	pstates_nsec                    4500244818298854:0:0:0:0:0:0:0:0:0:0:0:0:0:0:364533346311557
+	snaptime                        4864778.16248609
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 10    
+name:   cpu_info10                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         4
+	core_id                         18
+	cpu_type                        i386
+	crtime                          350456.544932298
+	cstates_count                   16348567:1401121:17615916
+	cstates_nsec                    4505050669432520:385997702403:710141970757548
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           36
+	pkg_core_id                     2
+	pstates_count                   1426840:0:0:0:0:0:0:0:0:0:0:0:0:0:0:1426840
+	pstates_nsec                    4487618277399938:0:0:0:0:0:0:0:0:0:0:0:0:0:0:377159887517450
+	snaptime                        4864778.16279344
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 11    
+name:   cpu_info11                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         6
+	core_id                         19
+	cpu_type                        i386
+	crtime                          350456.574984532
+	cstates_count                   61616727:2805703:64117125
+	cstates_nsec                    4503084576487628:462521547104:712647855195590
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           39
+	pkg_core_id                     3
+	pstates_count                   4152800:0:0:0:0:0:0:0:0:0:0:0:0:0:0:4152800
+	pstates_nsec                    4500089142794820:0:0:0:0:0:0:0:0:0:0:0:0:0:0:364689022459623
+	snaptime                        4864778.16313056
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 12    
+name:   cpu_info12                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         8
+	core_id                         20
+	cpu_type                        i386
+	crtime                          350456.605069589
+	cstates_count                   15688650:1560865:17110012
+	cstates_nsec                    4505275035357778:344879531676:709946173548842
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           42
+	pkg_core_id                     4
+	pstates_count                   1484021:0:0:0:0:0:0:0:0:0:0:0:0:0:0:1484021
+	pstates_nsec                    4486864575561730:0:0:0:0:0:0:0:0:0:0:0:0:0:0:377913590003931
+	snaptime                        4864778.16344315
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 13    
+name:   cpu_info13                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         10
+	core_id                         21
+	cpu_type                        i386
+	crtime                          350456.636527892
+	cstates_count                   60053568:2373973:62129251
+	cstates_nsec                    4503493929214182:425306307254:712258058132860
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           45
+	pkg_core_id                     5
+	pstates_count                   3987867:0:0:0:0:0:0:0:0:0:0:0:0:0:0:3987867
+	pstates_nsec                    4500449873754985:0:0:0:0:0:0:0:0:0:0:0:0:0:0:364328292132448
+	snaptime                        4864778.16376434
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 14    
+name:   cpu_info14                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         12
+	core_id                         22
+	cpu_type                        i386
+	crtime                          350456.666680964
+	cstates_count                   15706920:1486635:17050178
+	cstates_nsec                    4505057012396543:323394707387:710193657506945
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           48
+	pkg_core_id                     6
+	pstates_count                   1443969:0:0:0:0:0:0:0:0:0:0:0:0:0:0:1443969
+	pstates_nsec                    4488982515364219:0:0:0:0:0:0:0:0:0:0:0:0:0:0:375795650833437
+	snaptime                        4864778.16407462
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 15    
+name:   cpu_info15                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         14
+	core_id                         23
+	cpu_type                        i386
+	crtime                          350456.696599975
+	cstates_count                   62268171:2559235:64492688
+	cstates_nsec                    4503643020330898:395699707108:712172290872347
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           51
+	pkg_core_id                     7
+	pstates_count                   4155643:0:0:0:0:0:0:0:0:0:0:0:0:0:0:4155643
+	pstates_nsec                    4500788962042065:0:0:0:0:0:0:0:0:0:0:0:0:0:0:363989204464971
+	snaptime                        4864778.16438233
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 16    
+name:   cpu_info16                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         1
+	core_id                         0
+	cpu_type                        i386
+	crtime                          350456.724880498
+	cstates_count                   58316584:3226311:61321990
+	cstates_nsec                    4504842858577197:384103235507:710831334856731
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           53
+	pkg_core_id                     0
+	pstates_count                   3015078:0:0:0:0:0:0:0:0:0:0:0:0:0:0:3015078
+	pstates_nsec                    4504700343412700:0:0:0:0:0:0:0:0:0:0:0:0:0:0:360077823420062
+	snaptime                        4864778.16470743
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 17    
+name:   cpu_info17                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         3
+	core_id                         1
+	cpu_type                        i386
+	crtime                          350456.757160888
+	cstates_count                   15491158:1398994:16773456
+	cstates_nsec                    4506558980390655:333912877356:708680793612757
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           54
+	pkg_core_id                     1
+	pstates_count                   531304:0:0:0:0:0:0:0:0:0:0:0:0:0:0:531304
+	pstates_nsec                    4503181618021154:0:0:0:0:0:0:0:0:0:0:0:0:0:0:361596549130313
+	snaptime                        4864778.16502613
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 18    
+name:   cpu_info18                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         5
+	core_id                         2
+	cpu_type                        i386
+	crtime                          350456.785051965
+	cstates_count                   58033072:1914699:59699737
+	cstates_nsec                    4504891699160470:339325999987:710918350232829
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           55
+	pkg_core_id                     2
+	pstates_count                   2983564:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2983564
+	pstates_nsec                    4504225051019723:0:0:0:0:0:0:0:0:0:0:0:0:0:0:360553116459209
+	snaptime                        4864778.16535355
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 19    
+name:   cpu_info19                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         7
+	core_id                         3
+	cpu_type                        i386
+	crtime                          350456.815095271
+	cstates_count                   15047726:1250041:16167934
+	cstates_nsec                    4506683001850740:295736614584:708595959798813
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           56
+	pkg_core_id                     3
+	pstates_count                   472639:0:0:0:0:0:0:0:0:0:0:0:0:0:0:472639
+	pstates_nsec                    4504011927632505:0:0:0:0:0:0:0:0:0:0:0:0:0:0:360766240153595
+	snaptime                        4864778.16566087
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 20    
+name:   cpu_info20                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         9
+	core_id                         4
+	cpu_type                        i386
+	crtime                          350456.845063084
+	cstates_count                   57212274:2665822:59606431
+	cstates_nsec                    4504864739863292:385826453305:710895371819811
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           57
+	pkg_core_id                     4
+	pstates_count                   2934061:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2934061
+	pstates_nsec                    4504284192483752:0:0:0:0:0:0:0:0:0:0:0:0:0:0:360493975638661
+	snaptime                        4864778.16599703
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 21    
+name:   cpu_info21                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         11
+	core_id                         5
+	cpu_type                        i386
+	crtime                          350456.875050075
+	cstates_count                   15178996:1092942:16138331
+	cstates_nsec                    4506465370188917:314995511909:708793457142046
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           58
+	pkg_core_id                     5
+	pstates_count                   488393:0:0:0:0:0:0:0:0:0:0:0:0:0:0:488393
+	pstates_nsec                    4502830941659026:0:0:0:0:0:0:0:0:0:0:0:0:0:0:361947226767223
+	snaptime                        4864778.16630136
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 22    
+name:   cpu_info22                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       2601
+	clog_id                         13
+	core_id                         6
+	cpu_type                        i386
+	crtime                          350456.905070481
+	cstates_count                   57987335:2697572:60420047
+	cstates_nsec                    4505056948732050:369871053512:710726208704127
+	current_clock_Hz                2601000000
+	current_cstate                  0
+	current_pstate                  0
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           59
+	pkg_core_id                     6
+	pstates_count                   2933211:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2933212
+	pstates_nsec                    4504106303382641:0:0:0:0:0:0:0:0:0:0:0:0:0:0:360671865368670
+	snaptime                        4864778.16662463
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 23    
+name:   cpu_info23                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        0
+	chip_id                         0
+	clock_MHz                       1200
+	clog_id                         15
+	core_id                         7
+	cpu_type                        i386
+	crtime                          350456.935083352
+	cstates_count                   15815694:757130:16406413
+	cstates_nsec                    4506850538882042:252941829214:708485439909020
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x0 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           60
+	pkg_core_id                     7
+	pstates_count                   494196:0:0:0:0:0:0:0:0:0:0:0:0:0:0:494196
+	pstates_nsec                    4503227619572066:0:0:0:0:0:0:0:0:0:0:0:0:0:0:361550549493555
+	snaptime                        4864778.16694027
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 24    
+name:   cpu_info24                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         1
+	core_id                         16
+	cpu_type                        i386
+	crtime                          350456.965048613
+	cstates_count                   17053613:1705104:18637290
+	cstates_nsec                    4504283516586929:378925212208:710832199424082
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           61
+	pkg_core_id                     0
+	pstates_count                   2039723:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2039723
+	pstates_nsec                    4482531739288089:0:0:0:0:0:0:0:0:0:0:0:0:0:0:382246430109721
+	snaptime                        4864778.16727435
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 25    
+name:   cpu_info25                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         3
+	core_id                         17
+	cpu_type                        i386
+	crtime                          350456.996821873
+	cstates_count                   59047407:773095:59538143
+	cstates_nsec                    4504521655278412:278633215446:711328878783059
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           62
+	pkg_core_id                     1
+	pstates_count                   3502433:0:0:0:0:0:0:0:0:0:0:0:0:0:0:3502433
+	pstates_nsec                    4501302976295087:0:0:0:0:0:0:0:0:0:0:0:0:0:0:363475193406821
+	snaptime                        4864778.16757905
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 26    
+name:   cpu_info26                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         5
+	core_id                         18
+	cpu_type                        i386
+	crtime                          350457.026656511
+	cstates_count                   16887946:1896618:18658669
+	cstates_nsec                    4504273226054375:398625452615:710912218951052
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           63
+	pkg_core_id                     2
+	pstates_count                   1932177:0:0:0:0:0:0:0:0:0:0:0:0:0:0:1932177
+	pstates_nsec                    4488064045679660:0:0:0:0:0:0:0:0:0:0:0:0:0:0:376714124324934
+	snaptime                        4864778.16788122
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 27    
+name:   cpu_info27                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         7
+	core_id                         19
+	cpu_type                        i386
+	crtime                          350457.056640468
+	cstates_count                   59171438:3082462:61967288
+	cstates_nsec                    4504610054099148:366427961389:711182778533960
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           64
+	pkg_core_id                     3
+	pstates_count                   3386064:0:0:0:0:0:0:0:0:0:0:0:0:0:0:3386064
+	pstates_nsec                    4502278448646714:0:0:0:0:0:0:0:0:0:0:0:0:0:0:362499721679222
+	snaptime                        4864778.16820113
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 28    
+name:   cpu_info28                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         9
+	core_id                         20
+	cpu_type                        i386
+	crtime                          350457.084891446
+	cstates_count                   16078123:3101701:19035271
+	cstates_nsec                    4504151865992989:516654397200:710905688255308
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           65
+	pkg_core_id                     4
+	pstates_count                   1819643:0:0:0:0:0:0:0:0:0:0:0:0:0:0:1819643
+	pstates_nsec                    4486694979087347:0:0:0:0:0:0:0:0:0:0:0:0:0:0:378083191545078
+	snaptime                        4864778.16850908
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 29    
+name:   cpu_info29                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         11
+	core_id                         21
+	cpu_type                        i386
+	crtime                          350457.116660991
+	cstates_count                   58923330:1382285:60027113
+	cstates_nsec                    4504345523619724:284657757656:711530218175929
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           66
+	pkg_core_id                     5
+	pstates_count                   3486181:0:0:0:0:0:0:0:0:0:0:0:0:0:0:3486181
+	pstates_nsec                    4502587009914919:0:0:0:0:0:0:0:0:0:0:0:0:0:0:362191161039356
+	snaptime                        4864778.16882955
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 30    
+name:   cpu_info30                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         13
+	core_id                         22
+	cpu_type                        i386
+	crtime                          350457.145133895
+	cstates_count                   16124275:1696534:17647653
+	cstates_nsec                    4504607703002383:375094449966:710593220985888
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           67
+	pkg_core_id                     6
+	pstates_count                   1799632:0:0:0:0:0:0:0:0:0:0:0:0:0:0:1799632
+	pstates_nsec                    4485890920635774:0:0:0:0:0:0:0:0:0:0:0:0:0:0:378887250634352
+	snaptime                        4864778.16914559
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
+module: cpu_info                        instance: 31    
+name:   cpu_info31                      class:    misc
+	brand                           Intel(r) Xeon(r) CPU E5-2650 v2 @ 2.60GHz
+	cache_id                        1
+	chip_id                         1
+	clock_MHz                       1200
+	clog_id                         15
+	core_id                         23
+	cpu_type                        i386
+	crtime                          350457.174963341
+	cstates_count                   444780652:2186557:446617028
+	cstates_nsec                    4503968515188634:252994234190:719024903349135
+	current_clock_Hz                1200000000
+	current_cstate                  2
+	current_pstate                  15
+	family                          6
+	fpu_type                        i387 compatible
+	implementation                  x86 (chipid 0x1 GenuineIntel 306E4 family 6 model 62 step 4 clock 2600 MHz)
+	max_ncpu_per_chip               32
+	max_ncpu_per_core               2
+	max_pwrcap                      0
+	model                           62
+	ncore_per_chip                  8
+	ncpu_per_chip                   16
+	pg_id                           68
+	pkg_core_id                     7
+	pstates_count                   2948492:0:0:0:0:0:0:0:0:0:0:0:0:0:0:2948492
+	pstates_nsec                    4502219704193821:0:0:0:0:0:0:0:0:0:0:0:0:0:0:362558467399072
+	snaptime                        4864778.1694682
+	socket_type                     Unknown
+	state                           on-line
+	state_begin                     1456409744
+	stepping                        4
+	supported_frequencies_Hz        1200000000:1300000000:1400000000:1500000000:1600000000:1700000000:1800000000:1900000000:2000000000:2100000000:2200000000:2300000000:2400000000:2500000000:2600000000:2601000000
+	supported_max_cstates           2
+	supported_max_pstates           15
+	vendor_id                       GenuineIntel
+
