@@ -1,0 +1,994 @@
+*
+* Hostid
+*
+  0004e938
+*
+* i86pc Configuration
+*
+*
+* Devices
+*
+scsi_vhci, instance #0
+pci, instance #0
+	pci15d9,62f (driver not attached)
+	pci8086,e02 (driver not attached)
+	pci8086,e03, instance #1
+		pci15d9,1521, instance #0
+		pci15d9,1521, instance #1
+	pci8086,e04, instance #2
+		pci14c1,9, instance #0
+	pci8086,e08 (driver not attached)
+	pci8086,e0a (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f, instance #0
+	pci15d9,62f (driver not attached)
+	pci8086,1d3e, instance #5
+		pci15d9,62f, instance #0
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f, instance #0
+		hub, instance #0
+			device, instance #0
+				mouse, instance #0
+				keyboard, instance #1
+	pci15d9,62f, instance #1
+		hub, instance #1
+	pci8086,244e, instance #0
+		display, instance #0
+	isa, instance #0
+		motherboard (driver not attached)
+		asy, instance #0
+		asy, instance #1
+		motherboard (driver not attached)
+		motherboard (driver not attached)
+		motherboard (driver not attached)
+		pit_beep, instance #0
+	pci15d9,62f, instance #0
+		disk, instance #0
+		disk, instance #2
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+ioapics (driver not attached)
+	ioapic, instance #0 (driver not attached)
+	ioapic, instance #1 (driver not attached)
+pci, instance #1
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+pci, instance #2
+	pci8086,e04 (driver not attached)
+	pci8086,e08 (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f (driver not attached)
+	pci15d9,62f, instance #1
+	pci15d9,62f (driver not attached)
+fw, instance #0
+	sb, instance #1
+		socket, instance #2
+			cpu, instance #0
+			cpu, instance #1
+			cpu, instance #2
+			cpu, instance #3
+			cpu, instance #4
+			cpu, instance #5
+			cpu, instance #6
+			cpu, instance #7
+			cpu, instance #8
+			cpu, instance #9
+			cpu, instance #10
+			cpu, instance #11
+			cpu, instance #12
+			cpu, instance #13
+			cpu, instance #14
+			cpu, instance #15
+		socket, instance #3
+			cpu, instance #16
+			cpu, instance #17
+			cpu, instance #18
+			cpu, instance #19
+			cpu, instance #20
+			cpu, instance #21
+			cpu, instance #22
+			cpu, instance #23
+			cpu, instance #24
+			cpu, instance #25
+			cpu, instance #26
+			cpu, instance #27
+			cpu, instance #28
+			cpu, instance #29
+			cpu, instance #30
+			cpu, instance #31
+used-resources (driver not attached)
+fcoe, instance #0
+iscsi, instance #0
+agpgart, instance #0
+options, instance #0
+pseudo, instance #0
+	zconsnex, instance #1
+	cn, instance #0
+	clone, instance #0
+	acpi_drv, instance #0
+	acpippm, instance #0
+	aggr, instance #0
+	arp, instance #0
+	audio, instance #0
+	biosdrv, instance #0
+	bl, instance #0
+	bmc, instance #0
+	bridge, instance #0
+	cap, instance #0
+	conskbd, instance #0
+	consms, instance #0
+	cpc, instance #0
+	cpuid, instance #0
+	crypto, instance #0
+	cryptoadm, instance #0
+	dcpc, instance #0
+	defdump, instance #0
+	dld, instance #0
+	dlpistub, instance #0
+	dtrace, instance #0
+	eib, instance #0
+	fasttrap, instance #0
+	fbt, instance #0
+	fcip, instance #0
+	devinfo, instance #0
+	fcp, instance #0
+	fcsm, instance #0
+	fm, instance #0
+	hcad, instance #0
+	icmp, instance #0
+	icmp6, instance #0
+	ip, instance #0
+	ip6, instance #0
+	ipnet, instance #0
+	ippctl, instance #0
+	ipsecah, instance #0
+	ipsecesp, instance #0
+	iptun, instance #0
+	iwscn, instance #0
+	keysock, instance #0
+	kmdb, instance #0
+	kssl, instance #0
+	llc1, instance #0
+	lockstat, instance #0
+	lofi, instance #0
+	log, instance #0
+	mm, instance #0
+	nvidia, instance #255
+	openeepr, instance #0
+	physmem, instance #0
+	poll, instance #0
+	power, instance #0
+	ppm, instance #0
+	profile, instance #0
+	ptc, instance #0
+	ptsl, instance #0
+	ramdisk, instance #1024
+	random, instance #0
+	rds, instance #0
+	rts, instance #0
+	sad, instance #0
+	sdpib, instance #0
+	sdt, instance #0
+	simnet, instance #0
+	smbios, instance #0
+	softmac, instance #0
+	sol_ucma, instance #0
+	spdsock, instance #0
+	srn, instance #0
+	sy, instance #0
+	sysevent, instance #0
+	sysmsg, instance #0
+	systrace, instance #0
+	tcp, instance #0
+	tcp6, instance #0
+	tl, instance #0
+	ucode, instance #0
+	udp, instance #0
+	udp6, instance #0
+	uvfs, instance #0
+	vnic, instance #0
+	vxlan, instance #0
+	wc, instance #0
+	zfs, instance #0
+	zvmm, instance #0
+	bpf, instance #0
+	dump, instance #0
+	fssnap, instance #0
+	ipf, instance #0
+	kstat, instance #0
+	ksyms, instance #0
+	logindmux, instance #0
+	nsmb, instance #0
+	pm, instance #0
+	pool, instance #0
+	ptm, instance #0
+	pts, instance #0
+	sppp, instance #0
+	sppptun, instance #0
+	winlock, instance #0
+vga_arbiter, instance #0
+xsvc, instance #0
+intel-iommu, instance #0
+intel-iommu, instance #1
+*
+* Loadable Objects
+*
+* Loadable Object Path = /platform/i86pc/kernel
+*
+drv/amd64/zvmm
+drv/amd64/zvpci_stub
+drv/amd64/vga_arbiter
+kmdb/amd64/unix
+amd64/unix
+drv/amd64/xsvc
+misc/amd64/zvautoconfig
+misc/amd64/zvmisc
+tod/amd64/zvtod
+cpu/amd64/cpu.generic
+cpu/amd64/cpu_ms.AuthenticAMD
+cpu/amd64/cpu_ms.AuthenticAMD.15
+cpu/amd64/cpu_ms.GenuineIntel
+cpu/amd64/cpu_ms.GenuineIntel.6.46
+	hard link:  cpu/amd64/cpu_ms.GenuineIntel.6.47
+dacf/amd64/consconfig_dacf
+drv/amd64/acpinex
+drv/amd64/acpippm
+drv/amd64/amd_iommu
+drv/amd64/cpudrv
+drv/amd64/intel_iommu
+drv/amd64/isa
+drv/amd64/npe
+drv/amd64/pci
+drv/amd64/ppm
+drv/amd64/fipe
+cpu/amd64/cpu_ms.GenuineIntel.6.45
+	hard link:  cpu/amd64/cpu_ms.GenuineIntel.6.62
+drv/amd64/pit_beep
+drv/amd64/zvnet
+drv/amd64/uefi_rt
+drv/amd64/zvblk
+drv/amd64/zvcntrl
+drv/amd64/zvnex
+drv/amd64/zvpci
+drv/amd64/zvsdir
+drv/amd64/zvterm
+mach/amd64/apix
+mach/amd64/pcplusmp
+mach/amd64/uppc
+mach/amd64/zvpsm
+misc/amd64/acpidev
+misc/amd64/gfx_private
+drv/amd64/rootnex
+drv/amd64/cpc
+	hard link:  sys/amd64/cpc
+drv/amd64/ioat
+misc/amd64/cpr
+kmdb/amd64/uppc
+kmdb/amd64/pcplusmp
+kmdb/amd64/zvpsm
+kmdb/amd64/iommu
+kmdb/amd64/apix
+drv/amd64/pci-ide
+*
+* Loadable Object Path = /kernel
+*
+drv/amd64/blkdev
+drv/amd64/adpu320
+drv/amd64/arn
+drv/amd64/audio
+drv/amd64/audio1575
+drv/amd64/audioens
+drv/amd64/audiopci
+drv/amd64/audiots
+misc/amd64/ac97
+drv/amd64/rtls
+drv/amd64/rwn
+drv/amd64/zyd
+drv/amd64/ses
+drv/amd64/sol_umad
+drv/amd64/sol_uverbs
+drv/amd64/sol_ucma
+misc/amd64/sol_ofs
+drv/amd64/asy
+drv/amd64/mpt_sas
+misc/amd64/dcopy
+drv/amd64/vxge
+drv/amd64/marvell88sx
+drv/amd64/pcwl
+misc/amd64/usbser
+drv/amd64/rdsv3
+drv/amd64/rge
+drv/amd64/fcoe
+drv/amd64/sfe
+drv/amd64/bnx
+drv/amd64/srn
+drv/amd64/ral
+drv/amd64/iwi
+drv/amd64/iscsi
+drv/amd64/iwp
+drv/amd64/iwk
+drv/amd64/nvidia
+drv/amd64/ipw
+drv/amd64/rpcib
+drv/amd64/xge
+drv/amd64/bnxe
+drv/amd64/fcip
+drv/amd64/rdsib
+drv/amd64/rds
+drv/amd64/agpgart
+drv/amd64/amd64_gart
+drv/amd64/agptarget
+drv/amd64/usbsprl
+drv/amd64/wpi
+drv/amd64/audiop16x
+drv/amd64/ixgb
+misc/amd64/uwba
+drv/amd64/dca
+drv/amd64/mega_sas
+drv/amd64/dcam1394
+drv/amd64/nv_sata
+drv/amd64/pcn
+drv/amd64/usbser_edge
+drv/amd64/imraid_sas
+drv/amd64/oce
+drv/amd64/daplt
+misc/amd64/bootdev
+drv/amd64/scsa1394
+drv/amd64/ptsl
+drv/amd64/mouse8042
+drv/amd64/openeepr
+drv/amd64/pci_pci
+drv/amd64/udp6
+drv/amd64/vgatext
+fs/amd64/sockfs
+drv/amd64/intel_nhm
+drv/amd64/intel_nhmex
+drv/amd64/intel_snb
+drv/amd64/power
+drv/amd64/pseudo
+drv/amd64/ptc
+drv/amd64/ippctl
+drv/amd64/ramdisk
+drv/amd64/random
+drv/amd64/rts
+	hard link:  socketmod/amd64/rts
+drv/amd64/vnic
+drv/amd64/vxlan
+drv/amd64/wc
+drv/amd64/mc-amd
+drv/amd64/mc-fma
+drv/amd64/mm
+drv/amd64/llc1
+drv/amd64/lofi
+drv/amd64/log
+drv/amd64/iptun
+drv/amd64/iwscn
+drv/amd64/kb8042
+fs/amd64/tmpfs
+misc/amd64/acpica
+misc/amd64/agpmaster
+misc/amd64/busra
+fs/amd64/zvsfs
+fs/amd64/procfs
+drv/amd64/tl
+drv/amd64/tzmon
+drv/amd64/ucode
+drv/amd64/sad
+drv/amd64/scsi_vhci
+drv/amd64/sd
+drv/amd64/softmac
+drv/amd64/spdsock
+drv/amd64/st
+fs/amd64/fifofs
+fs/amd64/lofs
+fs/amd64/mntfs
+drv/amd64/kmdb
+drv/amd64/kssl
+fs/amd64/sharefs
+fs/amd64/namefs
+drv/amd64/ip6
+drv/amd64/ipnet
+drv/amd64/sgen
+drv/amd64/simnet
+drv/amd64/smbios
+drv/amd64/sy
+drv/amd64/sysevent
+drv/amd64/sysmsg
+fs/amd64/ctfs
+drv/amd64/pcieb
+drv/amd64/physmem
+drv/amd64/poll
+fs/amd64/objfs
+fs/amd64/specfs
+fs/amd64/dcfs
+fs/amd64/dev
+fs/amd64/devfs
+drv/amd64/tcp6
+drv/amd64/biosdrv
+drv/amd64/pcata
+drv/amd64/nxge
+misc/amd64/uathfw
+drv/amd64/uath
+drv/amd64/nvme
+drv/amd64/e1000g
+drv/amd64/bl
+drv/amd64/hcad
+misc/amd64/ibmf
+misc/amd64/ibtl
+fs/amd64/udfs
+drv/amd64/ib
+misc/amd64/ibcm
+misc/amd64/ibdm
+drv/amd64/audio810
+misc/amd64/hwa1480_fw
+drv/amd64/hubd
+drv/amd64/bcm_sata
+misc/amd64/neti
+misc/amd64/cardbus
+misc/amd64/cmlb
+misc/amd64/consconfig
+misc/amd64/mii
+misc/amd64/mrp
+misc/amd64/net80211
+misc/amd64/sata
+misc/amd64/scsi
+misc/amd64/strplumb
+misc/amd64/tem
+misc/amd64/pcihp
+misc/amd64/pcmcia
+misc/amd64/rpcsec
+misc/amd64/iovcfg
+misc/amd64/ipc
+misc/amd64/kbtrans
+misc/amd64/tlimod
+misc/amd64/ctf
+misc/amd64/dls
+misc/amd64/gld
+misc/amd64/pci_autoconfig
+misc/amd64/pcicfg
+misc/amd64/pcie
+misc/amd64/hpcsvc
+misc/amd64/idmap
+misc/amd64/iommu
+misc/amd64/hook
+misc/amd64/kmdbmod
+misc/amd64/ksocket
+misc/amd64/mac
+drv/amd64/ata
+drv/amd64/sxge
+drv/amd64/yge
+drv/amd64/ohci
+drv/amd64/scsa2usb
+drv/amd64/ehci
+drv/amd64/hid
+drv/amd64/hwahc
+misc/amd64/usba
+misc/amd64/usba10
+drv/amd64/ugen
+drv/amd64/uhci
+drv/amd64/usb_ia
+drv/amd64/wusb_df
+drv/amd64/xhci
+misc/amd64/hidparser
+drv/amd64/usb_mid
+drv/amd64/usbprn
+drv/amd64/wusb_ca
+drv/amd64/hwarc
+drv/amd64/consms
+drv/amd64/cn
+drv/amd64/aggr
+drv/amd64/conskbd
+drv/amd64/bridge
+drv/amd64/cpuid
+drv/amd64/defdump
+drv/amd64/devinfo
+drv/amd64/cap
+drv/amd64/bscbus
+drv/amd64/clone
+drv/amd64/icmp6
+drv/amd64/intel_nb5000
+drv/amd64/bscv
+drv/amd64/acpi_drv
+drv/amd64/dld
+drv/amd64/dlpistub
+drv/amd64/i8042
+drv/amd64/acpi_toshiba
+drv/amd64/bge
+misc/amd64/nfs_dlboot
+misc/amd64/klmmod
+misc/amd64/klmops
+drv/amd64/ecpp
+drv/amd64/glm
+drv/amd64/bfe
+drv/amd64/hme
+drv/amd64/elxl
+drv/amd64/mpt
+misc/amd64/usbs49_fw
+drv/amd64/usbftdi
+drv/amd64/ixgbe
+drv/amd64/ixgbevf
+drv/amd64/usbecm
+drv/amd64/pcser
+drv/amd64/hxge
+misc/amd64/idm
+drv/amd64/iser
+drv/amd64/smp
+misc/amd64/rpcsec_gss
+drv/README.driver
+drv/amd64/atu
+drv/amd64/nulldriver
+drv/amd64/options
+drv/amd64/cpunex
+drv/amd64/urtw
+drv/amd64/lsc
+misc/amd64/fctl
+drv/amd64/fp
+drv/amd64/dnet
+drv/amd64/fm
+drv/amd64/audiocmi
+drv/amd64/usbsacm
+drv/amd64/igb
+drv/amd64/igbvf
+drv/amd64/aac
+drv/amd64/fcp
+misc/amd64/kgssapi
+misc/amd64/des
+misc/qlc/amd64/qlc_fw_2500
+misc/qlc/amd64/qlc_fw_6322
+misc/qlc/amd64/qlc_fw_2400
+misc/qlc/amd64/qlc_fw_8100
+misc/qlc/amd64/qlc_fw_8301fc
+misc/qlc/amd64/qlc_fw_8300fce
+misc/qlc/amd64/qlc_fw_2200
+misc/qlc/amd64/qlc_fw_2300
+crypto/amd64/aes
+crypto/amd64/arcfour
+crypto/amd64/camellia
+crypto/amd64/blowfish
+crypto/amd64/des
+crypto/amd64/ecc
+crypto/amd64/intelrd
+crypto/amd64/md4
+crypto/amd64/rsa
+crypto/amd64/swrand
+drv/amd64/sdpib
+	hard link:  strmod/amd64/sdpib
+strmod/amd64/usb_ah
+strmod/amd64/pipemod
+drv/amd64/udp
+	hard link:  socketmod/amd64/udp
+	hard link:  strmod/amd64/udp
+drv/amd64/ipsecah
+	hard link:  strmod/amd64/ipsecah
+drv/amd64/ipsecesp
+	hard link:  strmod/amd64/ipsecesp
+drv/amd64/keysock
+	hard link:  strmod/amd64/keysock
+drv/amd64/ip
+	hard link:  strmod/amd64/ip
+drv/amd64/tcp
+	hard link:  socketmod/amd64/tcp
+	hard link:  strmod/amd64/tcp
+strmod/amd64/tirdwr
+strmod/amd64/ptem
+strmod/amd64/redirmod
+strmod/amd64/vuidm5p
+strmod/amd64/dedump
+strmod/amd64/drcompat
+strmod/amd64/ldterm
+strmod/amd64/xprobe
+strmod/amd64/vuidm3p
+strmod/amd64/bufmod
+strmod/amd64/connld
+strmod/amd64/vuidm4p
+strmod/amd64/pckt
+strmod/amd64/pfmod
+strmod/amd64/timod
+strmod/amd64/vuid2ps2
+strmod/amd64/vuid3ps2
+strmod/amd64/ttcompat
+strmod/amd64/usbms
+strmod/amd64/usbwcm
+strmod/amd64/usbkbm
+drv/amd64/arp
+	hard link:  strmod/amd64/arp
+drv/amd64/icmp
+	hard link:  socketmod/amd64/icmp
+	hard link:  strmod/amd64/icmp
+socketmod/amd64/socksdp
+socketmod/amd64/sockrds
+socketmod/amd64/trill
+socketmod/amd64/ksslf
+socketmod/amd64/socksctp
+drv/amd64/dcpc
+	hard link:  dtrace/amd64/dcpc
+drv/amd64/fasttrap
+	hard link:  dtrace/amd64/fasttrap
+drv/amd64/fbt
+	hard link:  dtrace/amd64/fbt
+drv/amd64/lockstat
+	hard link:  dtrace/amd64/lockstat
+drv/amd64/profile
+	hard link:  dtrace/amd64/profile
+drv/amd64/sdt
+	hard link:  dtrace/amd64/sdt
+drv/amd64/systrace
+	hard link:  dtrace/amd64/systrace
+kmdb/amd64/i915
+kmdb/amd64/emlxs
+kmdb/amd64/zfs
+kmdb/amd64/pmcs
+kmdb/amd64/md
+kmdb/amd64/random
+kmdb/amd64/sd
+kmdb/amd64/crypto
+kmdb/amd64/specfs
+kmdb/amd64/scsi_vhci
+kmdb/amd64/cpc
+kmdb/amd64/nca
+kmdb/amd64/neti
+kmdb/amd64/cpu.generic
+kmdb/amd64/kssl
+kmdb/amd64/lsc
+kmdb/amd64/mr_sas
+kmdb/amd64/nfs
+kmdb/amd64/ufs
+kmdb/amd64/sppp
+kmdb/amd64/lofs
+kmdb/amd64/act
+kmdb/amd64/ipc
+kmdb/amd64/scu
+kmdb/amd64/tree
+kmdb/amd64/mpt_sas
+kmdb/amd64/krtld
+kmdb/amd64/genunix
+kmdb/amd64/zvmm
+kmdb/amd64/hook
+kmdb/amd64/ipp
+kmdb/amd64/lmrc
+kmdb/amd64/mpt
+kmdb/amd64/rpc
+kmdb/amd64/zvblk
+kmdb/amd64/ptm
+kmdb/amd64/usba
+kmdb/amd64/mac
+kmdb/amd64/ip
+kmdb/amd64/mdb_ds
+kmdb/amd64/sata
+kmdb/amd64/s1394
+kmdb/amd64/cpu_ms.AuthenticAMD.15
+kmdb/amd64/logindmux
+kmdb/amd64/uhci
+kmdb/amd64/sockfs
+kmdb/amd64/arp
+kmdb/amd64/idm
+misc/emlxs/amd64/emlxs_fw
+misc/pmcs/amd64/pmcs8001fw
+misc/pmcs/amd64/pmcs8018fw
+misc/pmcs/amd64/pmcs8072fw
+fs/amd64/autofs
+	hard link:  sys/amd64/autofs
+sys/amd64/msgsys
+sys/amd64/pipe
+sys/amd64/c2audit
+sys/amd64/doorfs
+sys/amd64/portfs
+sys/amd64/pset
+sys/amd64/semsys
+strmod/amd64/rpcmod
+	hard link:  sys/amd64/rpcmod
+sys/amd64/inst_sync
+sys/amd64/kaio
+sys/amd64/shmsys
+fs/amd64/nfs
+	hard link:  sys/amd64/nfs
+sched/amd64/TS_DPTBL
+kiconv/amd64/kiconv_sc
+kiconv/amd64/kiconv_tc
+kiconv/amd64/kiconv_ja
+kiconv/amd64/kiconv_emea
+kiconv/amd64/kiconv_ko
+sched/amd64/SDC
+sched/amd64/TS
+ipp/amd64/ipgpc
+mac/amd64/mac_6to4
+mac/amd64/mac_ether
+mac/amd64/mac_ib
+mac/amd64/mac_ipv4
+mac/amd64/mac_ipv6
+mac/amd64/mac_wifi
+exec/amd64/elfexec
+exec/amd64/intpexec
+dacf/amd64/net_dacf
+misc/scsi_vhci/amd64/scsi_vhci_f_tpgs
+misc/scsi_vhci/amd64/scsi_vhci_f_tpgs_tape
+misc/scsi_vhci/amd64/scsi_vhci_f_asym_emc
+misc/scsi_vhci/amd64/scsi_vhci_f_asym_lsi
+misc/scsi_vhci/amd64/scsi_vhci_f_sym_enc
+misc/scsi_vhci/amd64/scsi_vhci_f_sym_hds
+misc/scsi_vhci/amd64/scsi_vhci_f_tape
+tcpcong/amd64/vegas
+misc/scsi_vhci/amd64/scsi_vhci_f_asym_sun
+misc/scsi_vhci/amd64/scsi_vhci_f_sym
+misc/scsi_vhci/amd64/scsi_vhci_f_sym_emc
+tcpcong/amd64/cubic
+tcpcong/amd64/highspeed
+amd64/genunix
+misc/kgss/amd64/kmech_krb5
+drv/amd64/usbsksp
+misc/amd64/sbp2
+misc/amd64/sda
+fs/amd64/hsfs
+drv/amd64/sdhost
+misc/amd64/strategy
+misc/amd64/gda
+misc/amd64/dadk
+drv/amd64/cmdk
+drv/amd64/cxgen
+drv/amd64/cxge
+drv/amd64/audiols
+drv/amd64/afe
+drv/amd64/rwd
+drv/amd64/nge
+drv/amd64/rum
+drv/amd64/ntxn
+drv/amd64/scu
+drv/amd64/ahci
+drv/amd64/qlc
+drv/amd64/qlge
+drv/amd64/hci1394
+misc/amd64/s1394
+drv/amd64/pcs
+drv/amd64/pcic
+drv/amd64/cryptoadm
+drv/amd64/crypto
+misc/amd64/bignum
+misc/amd64/kcf
+drv/amd64/pcan
+drv/amd64/dmfe
+drv/amd64/i40evf
+drv/amd64/i40e
+crypto/amd64/md5
+	hard link:  misc/amd64/md5
+crypto/amd64/sha1
+	hard link:  misc/amd64/sha1
+crypto/amd64/sha2
+	hard link:  misc/amd64/sha2
+drv/amd64/iprb
+drv/amd64/ibp
+drv/amd64/av1394
+drv/amd64/atge
+drv/amd64/audiohd
+drv/amd64/atiatom
+fs/amd64/ufs
+misc/amd64/fssnap_if
+misc/amd64/mwlfw
+drv/amd64/mwl
+drv/amd64/lmrc
+drv/amd64/vr
+drv/amd64/uvfs
+	hard link:  fs/amd64/uvfs
+drv/amd64/ural
+drv/amd64/usbvc
+drv/amd64/sbmc
+drv/amd64/ipmi
+drv/amd64/dtrace
+drv/amd64/eib
+drv/amd64/fcoei
+drv/amd64/audioixp
+drv/amd64/mxfe
+drv/amd64/iwh
+drv/amd64/cpqary3
+drv/amd64/tpm
+drv/amd64/mcxnex
+drv/amd64/hermon
+drv/amd64/mcxe
+drv/amd64/si3124
+drv/amd64/myri10ge
+drv/amd64/amd8111s
+drv/amd64/chxge
+misc/amd64/drm
+drv/amd64/i915
+drv/amd64/rtw
+drv/amd64/audiosolo
+drv/amd64/fcsm
+drv/amd64/ath
+drv/amd64/emlxs
+drv/amd64/qlcnic
+drv/amd64/bmc
+misc/amd64/nfssrv
+drv/amd64/audioemu10k
+drv/amd64/mr_sas
+misc/amd64/ibdma
+drv/amd64/audiovia823x
+drv/amd64/usb_as
+drv/amd64/usb_ac
+drv/amd64/zfs
+	hard link:  fs/amd64/zfs
+drv/amd64/arcmsr
+drv/amd64/pmcs
+*
+* Loadable Object Path = /usr/kernel
+*
+drv/amd64/fssnap
+drv/amd64/ipf
+exec/amd64/javaexec
+exec/amd64/shbinexec
+fs/amd64/fdfs
+fs/amd64/pcfs
+fs/amd64/smbfs
+kmdb/amd64/nsmb
+kmdb/amd64/smbfs
+strmod/amd64/cryptmod
+strmod/amd64/rlmod
+strmod/amd64/spppasyn
+strmod/amd64/spppcomp
+drv/amd64/sppptun
+	hard link:  strmod/amd64/sppptun
+strmod/amd64/telmod
+pcbe/amd64/pcbe.AuthenticAMD
+pcbe/amd64/pcbe.AuthenticAMD.21
+pcbe/amd64/pcbe.GenuineIntel.15
+pcbe/amd64/pcbe.GenuineIntel.5
+	hard link:  pcbe/amd64/pcbe.GenuineIntel.6
+pcbe/amd64/pcbe.GenuineIntel.6.15
+pcbe/amd64/pcbe.GenuineIntel.6.26
+pcbe/amd64/pcbe.GenuineIntel.6.42
+pcbe/amd64/pcbe.GenuineIntel.6.60
+sched/amd64/FSS
+sched/amd64/FX
+sched/amd64/FX_DPTBL
+sched/amd64/IA
+sched/amd64/RT
+sched/amd64/RT_DPTBL
+socketmod/amd64/sockpfp
+drv/amd64/bpf
+drv/amd64/dump
+drv/amd64/kstat
+drv/amd64/ksyms
+drv/amd64/logindmux
+drv/amd64/nsmb
+drv/amd64/pm
+drv/amd64/pool
+drv/amd64/ptm
+drv/amd64/pts
+drv/amd64/sppp
+drv/amd64/winlock
+drv/amd64/zcons
+brand/amd64/s10_brand
+sys/amd64/acctctl
+sys/amd64/exacctsys
+sys/amd64/sysacct
+pcbe/amd64/pcbe.GenuineIntel.6.70
+pcbe/amd64/pcbe.GenuineIntel.6.69
+pcbe/amd64/pcbe.GenuineIntel.6.63
+pcbe/amd64/pcbe.GenuineIntel.6.62
+pcbe/amd64/pcbe.GenuineIntel.6.61
+pcbe/amd64/pcbe.GenuineIntel.6.58
+pcbe/amd64/pcbe.GenuineIntel.6.47
+pcbe/amd64/pcbe.GenuineIntel.6.46
+pcbe/amd64/pcbe.GenuineIntel.6.45
+pcbe/amd64/pcbe.GenuineIntel.6.44
+pcbe/amd64/pcbe.GenuineIntel.6.37
+pcbe/amd64/pcbe.GenuineIntel.6.31
+pcbe/amd64/pcbe.GenuineIntel.6.30
+pcbe/amd64/pcbe.GenuineIntel.6.29
+pcbe/amd64/pcbe.GenuineIntel.6.28
+pcbe/amd64/pcbe.GenuineIntel.6.23
+pcbe/amd64/pcbe.AuthenticAMD.21.2
+pcbe/amd64/pcbe.AuthenticAMD.21.1
+pcbe/amd64/pcbe.AuthenticAMD.21.0
+*
+* System Configuration
+*
+  swap files
+swapfile             dev    swaplo   blocks     free
+/dev/zvol/dsk/rpool/swap 309,1         8  8388600  8388600
+*
+* Tunable Parameters
+*
+1373298688	maximum memory allowed in buffer cache (bufhwm)
+   30000	maximum number of processes (v.v_proc)
+      99	maximum global priority in sys class (MAXCLSYSPRI)
+   29995	maximum processes per user id (v.v_maxup)
+      30	auto update time limit in seconds (NAUTOUP)
+      25	page stealing low water mark (GPGSLO)
+       1	fsflush run rate (FSFLUSHR)
+      25	minimum resident memory for avoiding deadlock (MINARMEM)
+      25	minimum swapable memory for avoiding deadlock (MINASMEM)
+*
+* Utsname Tunables
+*
+    5.11  release (REL)
+solaris11  node name (NODE)
+   SunOS  system name (SYS)
+    11.3  version (VER)
+*
+* Process Resource Limit Tunables (Current:Maximum)
+*
+0x0000000000000100:0x0000000000010000	file descriptors
+*
+* Streams Tunables
+*
+     9	maximum number of pushes allowed (NSTRPUSH)
+ 65536	maximum stream message size (STRMSGSZ)
+  1024	max size of ctl part of message (STRCTLSZ)
+*
+* IPC Messages
+*
+* The IPC Messages module no longer has system-wide limits.
+* Please see the "Solaris Tunable Parameters Reference Manual" for
+* information on how the old limits map to resource controls and
+* the prctl(1) and getrctl(2) manual pages for information on
+* observing the new limits.
+*
+*
+* IPC Semaphores module is not loaded
+*
+*
+* IPC Shared Memory
+*
+* The IPC Shared Memory module no longer has system-wide limits.
+* Please see the "Solaris Tunable Parameters Reference Manual" for
+* information on how the old limits map to resource controls and
+* the prctl(1) and getrctl(2) manual pages for information on
+* observing the new limits.
+*
+*
+* Time Sharing Scheduler Tunables
+*
+60	maximum time sharing user priority (TSMAXUPRI)
+SYS	system class name (SYS_NAME)
