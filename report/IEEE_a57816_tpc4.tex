@@ -109,9 +109,19 @@ numbers=right,
  %backgroundcolor=\color{lbcolor},
 }
 
+\usepackage{titling}
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip0.5em}%
+}
+
+
 \begin{document}
-\title{Performance e Precisão Relativas de Filesystem Benchmarks
- \\ Active Benchmarking da ferramenta iozone recorrendo a DTrace em Solaris 11}
+\title{Performance e Precisão Relativas de Filesystem Benchmarks e Disk Benchmarks}
+
+\subtitle{Active Benchmarking da ferramenta iozone recorrendo a DTrace em Solaris 11}
 
 % author names and affiliations
 % use a multiple column layout for up to three different
@@ -162,625 +172,205 @@ Email: a57816@alunos.uminho.pt}
 %\hfill Filipe Oliveira
  
 %\hfill 1 Março, 2016
-\renewcommand{\abstract}{\textbf{\centering Introdução -- Contextualização da Ferramenta DTrace\break}}
+\renewcommand{\abstract}{\textbf{\centering Introdução -- Contextualização da Ferramenta iozone\break}}
 
 \abstract{
 
-A necessidade de recurso a ferramentas de traçado dinâmico como o DTrace está implicitamente associada à necessidade de recolha de informação dos sistemas de computação no seu todo -- via agregação, ou de processos/kernels específicos. Com o aumento da complexidade dos sistemas existem "comportamentos" incorretos de kernels que apenas podem ser observados através da instrumentação dos kernels no próprio sistema e recolha de dados estatísticos da mesma. Ora, essa instrumentação pode ser via amostragem (\say{sampling}) ou via traçado dinâmico (\say{tracing}). \par
-A grande vantagem do recurso à ferramenta DTrace está associada à segunda forma de instrumentação (apesar de a ferramenta também nos permitir a recolha de dados de amostragem). O Dtrace consegue acoplar informação extremamente  distinta, contando ainda com a mais valia de um overhead mínimo na grande maioria das medições dos valores de informação, via \say{instrumentation points} ou \say{probes}. \par 
-No sistema em estudo contamos com 94274 probes (organizadas por provider:module:function:name). De seguida apresenta-se a lista de providers disponíveis no mesmo, conjuntamente com um excerto da sua contextualização extraído do livro SPEC\footnote{Systems performance : enterprise and the cloud / Brendan Gregg.} e do guia online do Dtrace\footnote{\url{http://dtrace.org/guide/preface.html}} :
+A necessidade de recurso a ferramentas de Benchmarking está implicitamente associada à necessidade de recolha de informação dos sistemas de computação no seu todo, ou de pontos específicos do mesmo, e sua posterior comparação e interpretação. Ora, quando queremos estudar especificamente a performance de um sistema de ficheiros e/ou de um determinado tipo de dispositivo de armazenamento de informação, podemos recorrer a ferramentas de traçado dinâmico (como o dtrace) por forma a confirmar os resultados obtidos e/ou complementar os mesmos, de uma forma que outrora era de extrema complexidade e dificuldade. \par 
+É importante realçar que a performance relativa dos sistemas de ficheiros e dispositivos de armazenamento está implicitamente ligada, uma vez que através de caching, buffering, e I/O assíncrono um sistema de ficheiros poderá "esconder" do nível da aplicação determinadas propriedades e lacunas do dispositivo físico de armazenamento. Retornando às ferramentas de benchmarking de sistemas de ficheiros e/ou dispositivos de armazenamento podemos compreender que as técnicas de software/hardware de otimização de tempos acesso aos dados, poderão implicar a benchmarking pouco precisa dos sistemas físicos presentes no sistema. \par 
+Todos os métodos de redução de tempos de acesso, ou seja, todos os métodos que tentam esconder a latência de acesso aos dados, deverão ser tidas em contacto no momento do benchmarking. Este trabalho prende-se precisamente com o estudo do quão precisa é a ferramenta de benchmarking iozone em sistemas de computação Solaris based, nomeadamente na máquina descrita na tabela \ref{table:characterization}.
+
+
+\begin{table}[H]
+\caption{Características de Hardware do sistema de computação }
+     \label{table:characterization}
+\centering
+  \begin{tabular}{ | l | r | }
+  
+    \hline
+    Sistema & compute-641 \\ \hline \hline
+        \# CPUs & 2  \\ \hline
+    CPU & Intel\textsuperscript{\textregistered} Xeon\textsuperscript{\textregistered}  E5-2650 v2 \\ \hline 
+    Arquitectura de Processador & Ivy Bridge  \\ \hline 
+    \# Cores por CPU & 8   \\ \hline 
+    \# Threads por CPU & 16  \\ \hline 
+     Freq. Clock & 2.6 GHz  \\ \hline
+    Cache L1  & 256KB  (32KB por Core)  \\ \hline 
+    Cache L2  & 2048KB (256KB por Core)  \\ \hline 
+    Cache L3  & 20480KB (partilhada) \\ \hline 
+  Ext. Inst. Set  & SSE4.2, AVX  \\ \hline 
+         \#Memory Channels & 4 \\ \hline
+        Memória Ram Disponível & 64GB \\ \hline
+     Peak Memory BW Fab. CPU  & 59.7 GB/s \\ \hline
+     \textbf{Local FileSystems} & ufs \\ \hline
+    \textbf{ NFS FileSystems} & nfs,
+smb, 
+autofs, 
+smbfs\\ \hline
+  \end{tabular}
+\end{table}
+
+Aquando da realização de benchmarking via iozone, iremos recorrer a outras ferramentas (nomeadamente truss e dtrace) para procedermos à nossa própria benchmark -- vulgo Active Benchmarking. Pretendemos com isso determinar quais os principais "bottlenecks" da porção do sistema a analisar, e ao mesmo tempo desenvolver capacidade crítica na análise de dados relativos a performance de sistemas de computação de complexidade acrescida.\par 
+Precisamos primeiramente de analisar de uma forma geral o comportamento da aplicação iozone no que  concerne a system calls, traçando de seguida um plano de traçado dinâmico que corrobore/desminta o apresentado pela ferramenta. 
+I
+\section{Passive Benchmarking :: uma primeira análise à ferramenta}
+
+Definida a ferramenta de benchmarking - iozone - existem diferentes opções a ter em conta, nomeadamente:
 \begin{itemize}
-\item \textbf{cpc} : CPU performance counters
-\item \textbf{dtrace} provides several probes related to DTrace itself
-\item \textbf{fbt }: kernel-level dynamic tracing
-\item \textbf{fsinfo}  allows tracing of file system events across different file system types, with file information for each event
-\item \textbf{io} : block device interface tracing (disk I/O)
-\item \textbf{ip }: IP protocol events: send and receive
-\item \textbf{iscsi} : iSCSI protocol events: connections, send and receive
-\item \textbf{lockstat} : lock contention statistics, or to understand virtually any aspect of locking behavior
-\item \textbf{mib} : makes available probes that correspond to counters in the illumos management information bases (MIBs)
-\item \textbf{proc} : process-level events: create, exec, exit
-\item \textbf{profile} : provides probes associated with a time-based interrupt firing every fixed, specified time interval
-\item \textbf{sched} : kernel scheduling events
-\item \textbf{sdt} : creates probes at sites that a software programmer has formally designated
-\item \textbf{shadowfs} ZFS Shadow Migration events
-\item \textbf{syscall} : system call trap table
-\item \textbf{sysevent} : system events
-\item \textbf{sysinfo} : system statistics
-\item \textbf{tcp} : TCP protocol events: connections, send and receive
-\item \textbf{udp} : UDP protocol events: connections, send and receive
-\item \textbf{vm} : virtual memory statistics
-\item \textbf{vminfo} : virtual memory statistics
+\item tipo de operação -- read, write, re-read, re-write, e outros
+\item tamanho do I/O
+\item forma de acesso aos dados -- sequencial ou random
+\item Memory mapping -- acesso á memória mmap em detrimento de read/write.
+\end{itemize}
+Teremos que ter ainda em conta na escolha do tamanho do dataset a memória disponível, assim como a quantidade dados passíveis de estarem presentes na memória cache. Só assim conseguiremos garantir que o recurso a uma system call irá resultar numa leitura/escrita em disco, ultrapassando os vários níveis de disfarce de latência.\par 
+Ora, dado que é na escrita dos dados que acreditamos que existirá uma maior possibilidade de descrepância de resultados pelo iozone versus os que iremos obter por medição direta (dados os inúmeros mecanismos como caching, buffering, e I/O assíncrono, permitirem a uma kernel efectuar uma escrita sem necessariamente os dados serem imediatamente escritos no disco), tomaremos especial atenção à performance de escrita medida pela ferramenta.\par 
+Ora, e atendendo ao seguinte excerto das Iozone Run rules:
+
+\epigraph{\textbf{For disk performance comparisons:}\par 
+1. For single stream results, be sure the file size is 3 times the size of the buffer cache. For throughput results, be sure the aggregate of files is 3 times the size of the buffer cache.\\\url{}}
+
+Daqui retiramos que o tamanho do ficheiro deverá ser 3 vezes superior à buffer cache disponível nos sistema de computação. Precisamos portanto de determinar esse valor, dado pelo parâmetro \textbf{UFS bufhwm}. Atente na sua descrição:
+
+\epigraph{\textbf{UFS Parameters}\\
+\textbf{bufhwm and bufhwm\_pct}\\
+\textbf{Description:}\par 
+
+Defines the maximum amount of memory for caching I/O buffers. The buffers are used for writing file system metadata (superblocks, inodes, indirect blocks, and directories). Buffers are allocated as needed until the amount of memory (in KB) to be allocated exceed bufhwm. At this point, metadata is purged from the buffer cache until enough buffers are reclaimed to satisfy the request.
+\vspace{3mm}\\ \url{http://docs.oracle.com/cd/E23823_01/html/817-0404/chapter2-37.html}}
+
+Ora, recorrendo ao comando \textbf{sysdef} podemos extrair a informação desejada:
+
+\begin{lstlisting}[style=command]
+ sysdef
+ ...
+*
+* Tunable Parameters
+*
+1373298688	maximum memory allowed in buffer cache (bufhwm)
+...
+   \end{lstlisting}
+   
+Poderíamos ser induzidos em erro e considerar como 3 * 1373298688 KB o tamanho do ficheiro a utilizar. Contudo, um olhar mais atento à continuação da definição de \textbf{bufhwm}:
+\epigraph{
+
+
+\textbf{Range}\\ 
+80 KB to 20 percent of physical memory, or 2 TB, whichever is less. Consequently, bufhwm\_pct can be between 1 and 20.\\
+
+\textbf{Validation}\\
+If bufhwm is less than its lower limit of 80 KB or \textbf{greater than its upper limit} (the lesser of 20 percent of physical memory, 2 TB, or one quarter (1/4) of the maximum amount of kernel heap), it is reset to the upper limit. The following message appears on the system console and in the /var/adm/messages file if an invalid value is attempted:
+\vspace{3mm}\\ \url{http://docs.oracle.com/cd/E23823_01/html/817-0404/chapter2-37.html}}\par 
+leva-nos a calcular o valor máximo de bufhwm como ( 20\% de 65501000 KB )  * 3 =  39300600 KB = 39.3006 GB. 
+\par 
+
+\subsection{Command Line Options}
+Analisando ainda as \say{Command Line Options} da ferramenta podemos desde já enumerar algumas opções que devemos incluir:
+
+\begin{itemize}
+\item \textbf{ -i 0 } -- Used to specify which tests to run. (0=write/rewrite, 1=read/re-read, 2=random-read/write 3=Read-backwards, 4=Re-write-record, 5=stride-read, 6=fwrite/re-fwrite, 7=fread/Re-fread, 8=random mix, 9=pwrite/Re-pwrite, 10=pread/Re-pread, 11=pwritev/Re-pwritev, 12=preadv/Re- preadv).
+
+\item \textbf{-s 39g} -- Used to specify the size, in Kbytes, of the file to test. One may also specify -s #k (size in Kbytes) or -s #m (size in Mbytes) or -s #g (size in Gbytes). 
+
+\item \textbf{-S 20480} -- Set processor cache size to value (in Kbytes). This tells Iozone the size of the processor cache. It is used internally for buffer alignment and for the purge functionality.
+
+\item \textbf{-l 1 } -- Set the lower limit on number of processes to run. When running throughput tests this option allows the user to specify the least number of processes or threads to start. This option should be used in conjunction with the -u option.
+
+\item \textbf{-u 1 } -- Set the upper limit on number of processes to run. When running throughput tests this option allows the user to specify the greatest number of processes or threads to start. This option should be used in conjunction with the -l option.
+
+\item \textbf{ -b /export/home/a57816/ESC\_ACTIVE\_BENCHMARKING\_HOME/teste\_write.xls } -- Iozone will create a binary file format file in Excel compatible output of results.
+
+\item \textbf{-R} -- Generate Excel report. Iozone will generate an Excel compatible report to standard out. This file may be imported with Microsoft Excel (space delimited) and used to create a graph of the filesystem performance. Note: The 3D graphs are column oriented. You will need to select this when graphing as the default in Excel is row oriented data.
 \end{itemize}
 
-
-É importante compreender o anteriormente enumerado para associar corretamente a informação que queremos recolher dos kernels/sistemas às probes disponibilizadas. No seguimento do discutido durante as componentes práticas da UCE de Engenharia de Sistemas de Computação foi então proposta a realização de alguns exercícios de ambientação com a ferramenta de medição DTrace, que passarei de seguida a solucionar. 
-}
-
-\newpage
-\section{}
-
-\epigraph{Fazer o traçado das chamadas ao sistema open() que deverá imprimir a seguinte informação por linha:
-\begin{itemize}
-\item nome do ficheiro executável e respetivos: PID do processo, UID do utilizador e GID do grupo.
-\item Caminho absoluto para o ficheiro que for aberto.
-\item A cadeia de carateres com as “flags” da chamada ao sistema open(), O\_RDONLY,
-O\_WRONLY, O\_RDWR, O\_APPEND, O\_CREAT
-\item O Valor de retorno de chamada de sistema
-\end{itemize}
-\\
-Testar o programa com as hipóteses que seguem:
-\begin{itemize}
-\item cat /etc/inittab $>$ /tmp/test
-\item cat /etc/inittab $>>$ /tmp/test
-\item cat /etc/inittab $|$ tee /tmp/test
-\item cat /etc/inittab $|$ tee -a /tmp/test
-\end{itemize}
-\\
-\textbf{Opcional}: Modificar o programa para que apenas os ficheiros com "/etc" no caminho sejam detetados.
-}
-
-Tal como referido no enunciado, em Solaris 11 a chamada de sistema \textbf{open()} foi substituído por outra mais genérico \textbf{openat()}. Analisando a assinatura da função openat()\footnote{\url{https://docs.oracle.com/cd/E26502_01/html/E28556/gkxro.html}}:
-
+Assim, analisemos resultado  do seguinte comando iozone:
+\begin{lstlisting}[style=command]
+/opt/csw/bin/iozone -+u -R -i 0 -S 20480 -s 39g -b /export/home/a57816/ESC_ACTIVE_BENCHMARKING_HOME/teste_write.xls -l 1 -u 1 
+\end{lstlisting}
+   
+que apresenta o seguinte resultado:
 \begin{lstlisting}
-int openat(int fildes, const char *path, int oflag, /* mode_t mode */);
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.434 $
+		Compiled for 64 bit mode.
+		Build: Solaris10 
+
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer,
+	             Vangel Bojaxhi, Ben England, Vikentsi Lapa,
+	             Alexey Skidanov.
+
+	Run began: Mon Apr 18 19:34:12 2016
+
+	CPU utilization Resolution = 0.000 seconds.
+	CPU utilization Excel chart enabled
+	Excel chart generation enabled
+	File size set to 40894464 kB
+	Command line used: /opt/csw/bin/iozone -+u -R -i 0 -S 20480 -s 39g -b /export/home/a57816/ESC_ACTIVE_BENCHMARKING_HOME/teste_write.xls -l 1 -u 1
+	Output is in kBytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 20480 kBytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+	Min process = 1 
+	Max process = 1 
+	Throughput test with 1 process
+	Each process writes a 40894464 kByte file in 4 kByte records
+
+	Children see throughput for  1 initial writers 	=  489166.09 kB/sec
+	Parent sees throughput for  1 initial writers 	=  406767.30 kB/sec
+	Min throughput per process 			=  489166.09 kB/sec 
+	Max throughput per process 			=  489166.09 kB/sec
+	Avg throughput per process 			=  489166.09 kB/sec
+	Min xfer 					= 40894464.00 kB
+	CPU Utilization: Wall time   83.600    CPU time   77.460    CPU utilization  92.65 %
+
+
+	Children see throughput for  1 rewriters 	=  463768.00 kB/sec
+	Parent sees throughput for  1 rewriters 	=  402978.57 kB/sec
+	Min throughput per process 			=  463768.00 kB/sec 
+	Max throughput per process 			=  463768.00 kB/sec
+	Avg throughput per process 			=  463768.00 kB/sec
+	Min xfer 					= 40894464.00 kB
+	CPU utilization: Wall time   88.179    CPU time   71.719    CPU utilization  81.33 %
+
+
+
+
+"Throughput report Y-axis is type of test X-axis is number of processes"
+"Record size = 4 kBytes "
+"Output is in kBytes/sec"
+
+"  Initial write "  489166.09 
+
+"        Rewrite "  463768.00 
+
+
+"CPU utilization report Y-axis is type of test X-axis is number of processes"
+"Record size = 4 kBytes "
+"Output is in CPU%"
+
+"  Initial write "      92.65 
+
+"        Rewrite "      81.33 
+
+
+iozone test complete.
+\end{lstlisting}
+ 
+ \subsection{Take 1 -- uma análise com truss}
+Ora, dos resultados anteriores, retiramos que o máximo de throughput do sistema de ficheiros e dispositivo de armazenamento físico tem o valor de 489166.09 KB/s para operações de escrita e 463768.00 KB/s para operações de re-escrita. Este último resultado apresentado leva-nos a duvidar da precisão de medição da ferramenta. Outro indicador que nos leva a duvidar da veracidade da medição prende-se com os valores altíssimos de utilização de CPU time de uma aplicação implicitamente \textbf{IO BOUND}.\par 
+Analisemos o tipo de system calls realizada pela ferramenta recorrendo ao seguinte comando \textbf{truss}:
+
+\begin{lstlisting}[style=command]
+truss -o truss_report_write.txt -df /opt/csw/bin/iozone -+u -R -i 0 -S 20480 -s 39g -b /export/home/a57816/ESC_ACTIVE_BENCHMARKING_HOME/teste_write.xls -l 1 -u 1 
 \end{lstlisting}
 
 
- necessitamos então de associar a informação que necessitamos a probes disponíveis no sistema através do comando:
- \begin{lstlisting}[basicstyle=\scriptsize]
- a57816@solaris11:/share/jade/a57816/ESC_DTRACE$ dtrace -l  -f openat* 
-   ID   PROVIDER            MODULE                          FUNCTION NAME
- 1583    syscall                                              openat entry
- 1584    syscall                                              openat return
- 1585    syscall                                            openat64 entry
- 1586    syscall                                            openat64 return
-30132        fbt           genunix                          openat32 entry
-30133        fbt           genunix                          openat32 return
-30134        fbt           genunix                          openat64 entry
-30135        fbt           genunix                          openat64 return
-30649        fbt           genunix                            openat entry
-30650        fbt           genunix                            openat return
-a57816@solaris11:/share/jade/a57816/ESC_DTRACE$
- \end{lstlisting}
-
-Desta forma confirmamos a existência das probes necessárias para a correcta realização do enunciado, sedo estas as de id 1583 a 1586 no nosso sistema de computação, escolha que iremos justificar de seguida.
-Ora, os 4 primeiros campos requeridos ( nome do ficheiro executável e respetivos: PID do processo, UID do utilizador e GID do grupo) podem ser obtidos através das variáveis acessíveis na ferramenta DTrace \textbf{execname, pid, uid, gid}, disponíveis em qualquer das probes seleccionadas anteriormente. Contudo, o caminho absoluto para o ficheiro que for aberto pode apenas ser acedido através da variável \textbf{arg1} nas probes  \textbf{syscall::openat:entry} e \textbf{syscall:openat64:entry}, sendo ressalvada ainda a necessidade de copiar a string que contém o caminho absoluto da zona de memória do utilizador para o kernel. Das premissas anteriores sabemos que precisaremos da seguinte regra no nosso script exec1.d:
- \begin{lstlisting}
-syscall::openat*:entry {
-  self->pathname =copyinstr(arg1);
-  .....
-  .....
-  .....
-}
- \end{lstlisting}
-
-Por forma a obtermos a cadeia de carateres com as “flags” da chamada ao sistema open(), O\_RDONLY,
-O\_WRONLY, O\_RDWR, O\_APPEND, O\_CREAT, necessitamos de aceder aos valores do terceiro argumento das system calls \textbf{openat()} e \textbf{openat64()}.  Ora, tal informação será acedida também através das duas probes anteriormente descritas na variável arg2(terceira variável das funções), sendo necessário proceder à correcta interpretação e posterior impressão dos seus valores. A solução encontrada passa por guardar a cadeia de caracteres numa variável local \textbf{self-$>$flags = arg2} e proceder posteriormente à impressão. \par 
-Relativamente à impressão das flags podemos dividir a mesma em duas grandes porções. Temos de uma lado o modo de abertura relativos às permissões (O\_RDONLY,O\_WRONLY, O\_RDWR) e as restantes duas flags do nosso interesse (O\_APPEND, O\_CREAT). Relativamente ao modo de abertura podemos considerar que temos apenas de realizar duas verificações, tendo em conta que os condicionais em DTrace se expressam pelo operador ternário. Assim, resolvemos a primeiro porção do problema com a seguinte expressão
-\begin{lstlisting}
-  /*if its not O_WRONLY or O_RDWR then its implicitly O_RDONLY */
- printf( "%-9s" , self->flags & O_WRONLY ? " O_WRONLY " : self->flags & O_RDWR ? " O_RDWR " : " O_RDONLY " ); 
-  \end{lstlisting}
-  
- Uma vez que para o ficheiro ser aberto em modo \textbf{O\_WRONLY} o \& lógico entre self-$>$flags e  \textbf{O\_WRONLY} terá que retornar o valor  \textbf{O\_WRONLY}. O mesmo se aplica para a flag de abertura  \textbf{O\_RDWR}. Caso a cadeia de caracteres não corresponder positivamente a nenhuma das anteriores verificações, implicará obrigatoriamente a abertura do ficheiro em modo  \textbf{O\_RDONLY} (modo de leitura).\par 
- Relativamente aos modos  \textbf{O\_APPEND} e  \textbf{O\_CREAT} as verificações são feitas separadamente pelas seguintes expressões:
- \begin{lstlisting}
-  printf( "%-9s" , self->flags & O_APPEND ? "| O_APPEND " : "" );
-  printf( "%-9s" , self->flags & O_CREAT ? "| O_CREAT " : "" );
-   \end{lstlisting}
-\par 
-Contudo, o valor de retorno de chamada de sistema não pode ser acedido através das duas probes anteriores, dado que, no início da system call, ainda não existe a informação relativa ao sucesso ou insucesso da mesma e respectivo descritor de ficheiro em caso de sucesso. Assim, necessitamos de acrescentar uma outra regra ao nosso ficheiro exec1.d que, aquando do término das system calls \textbf{openat()} e \textbf{openat64()}, verifica o valor retornado na variável \textbf{fildes}, acessível através da variável DTrace arg1.\par 
-Adicionando apenas uma regra para aquando do início da execução do nosso script imprimir o cabeçalho ficamos com o seguinte ficheiro final:
- \begin{lstlisting}[basicstyle=\scriptsize]
- #!/usr/sbin/dtrace -s
-
-/*
- ********************************************************************************
- *   Copyright(C) 2016 Filipe Oliveira
- *   HPC Group, Computer Science Dpt.
- *   University of Minho
- *   All Rights Reserved.
- ********************************************************************************
- *   Content : simple openat and openat64 system calls tracer
- *     
- ********************************************************************************/
-
-#pragma D option quiet
-
-dtrace:::BEGIN {
-  printf("%-10s%-8s%-8s%-8s%-50s%-27s%-5s\n",  "EXEC" , "PID", "UID" , "GID", "ABS PATH" , "FLAGS", "RETURNED VALUE");
-}
-
-/* will catch openat and openat64 */
-syscall::openat*:entry {
-  self->pathname =copyinstr(arg1);
-  self->flags = arg2;
-}
-
-/* will catch openat and openat64 */
-syscall::openat*:return
-{
-  printf("%-10s%-8d%-8d%-8d%-50s", execname, pid, uid, gid, self->pathname);
-  /*if its not O_WRONLY or O_RDWR then its implicitly O_RDONLY */
-  printf( "%-9s" , self->flags & O_WRONLY ? " O_WRONLY " : self->flags & O_RDWR ? " O_RDWR " : " O_RDONLY " ); 
-  printf( "%-9s" , self->flags & O_APPEND ? "| O_APPEND " : "" );
-  printf( "%-9s" , self->flags & O_CREAT ? "| O_CREAT " : "" );
-  printf("%5i\n", arg1); 
-}
-
-
- \end{lstlisting}
-
-\subsection{Resultados de execução dos comandos exemplo}
-Podemos agora executar os 4 comandos requeridos, apresentando de seguida os resultados de execução:
-\subsubsection{}
-
- \begin{lstlisting}[style=command]
- cat /etc/inittab  >  /tmp/test1
-   \end{lstlisting}
-   
-\par 
-\begin{lstlisting}[style=esc]
-EXEC      PID     UID     GID     ABS PATH                                          FLAGS                      RETURNED VALUE
-bash      22658   29220   5000    /tmp/test1                                         O_WRONLY          | O_CREAT     4
-cat       22658   29220   5000    /var/ld/ld.config                                  O_RDONLY                      -1
-cat       22658   29220   5000    /lib/libc.so.1                                     O_RDONLY                       3
-cat       22658   29220   5000    /usr/lib/locale/en_US.UTF-8/en_US.UTF-8.so.3       O_RDONLY                       3
-cat       22658   29220   5000    /usr/lib/locale/en_US.UTF-8/methods_unicode.so.3   O_RDONLY                       3
-cat       22658   29220   5000    /etc/inittab                                       O_RDONLY                       3
- \end{lstlisting}
-
-\subsubsection{}
-
- \begin{lstlisting}[style=command]
- cat /etc/inittab  >>  /tmp/test1
-   \end{lstlisting}
-   Atente na primeira linha retornada, na flag O\_APPEND tal como previsível:
-\par 
-\begin{lstlisting}[style=esc]
-EXEC      PID     UID     GID     ABS PATH                                          FLAGS                      RETURNED VALUE
-bash      22662   29220   5000    /tmp/test1                                         O_WRONLY | O_APPEND | O_CREAT     4
-cat       22662   29220   5000    /var/ld/ld.config                                  O_RDONLY                      -1
-cat       22662   29220   5000    /lib/libc.so.1                                     O_RDONLY                       3
-cat       22662   29220   5000    /usr/lib/locale/en_US.UTF-8/en_US.UTF-8.so.3       O_RDONLY                       3
-cat       22662   29220   5000    /usr/lib/locale/en_US.UTF-8/methods_unicode.so.3   O_RDONLY                       3
-cat       22662   29220   5000    /etc/inittab                                       O_RDONLY                       3
- \end{lstlisting}
- 
-\subsubsection{}
-
- \begin{lstlisting}[style=command]
-cat /etc/inittab | tee /tmp/test1
-   \end{lstlisting}
-\par 
-\begin{lstlisting}[style=esc]
-EXEC      PID     UID     GID     ABS PATH                                          FLAGS                      RETURNED VALUE
-tee       22666   29220   5000    /var/ld/ld.config                                  O_RDONLY                      -1
-tee       22666   29220   5000    /lib/libc.so.1                                     O_RDONLY                       3
-tee       22666   29220   5000    /usr/lib/locale/en_US.UTF-8/en_US.UTF-8.so.3       O_RDONLY                       3
-tee       22666   29220   5000    /usr/lib/locale/en_US.UTF-8/methods_unicode.so.3   O_RDONLY                       3
-tee       22666   29220   5000    /tmp/test1                                         O_WRONLY          | O_CREAT     3
-cat       22665   29220   5000    /var/ld/ld.config                                  O_RDONLY                      -1
-cat       22665   29220   5000    /lib/libc.so.1                                     O_RDONLY                       3
-cat       22665   29220   5000    /usr/lib/locale/en_US.UTF-8/en_US.UTF-8.so.3       O_RDONLY                       3
-cat       22665   29220   5000    /usr/lib/locale/en_US.UTF-8/methods_unicode.so.3   O_RDONLY                       3
-cat       22665   29220   5000    /etc/inittab                                       O_RDONLY                       3
- \end{lstlisting}
-
-\subsubsection{}
-
- \begin{lstlisting}[style=command]
-cat /etc/inittab | tee -a /tmp/test1
-   \end{lstlisting}
-\par 
-\begin{lstlisting}[style=esc]
-EXEC      PID     UID     GID     ABS PATH                                          FLAGS                      RETURNED VALUE
-tee       22656   29220   5000    /var/ld/ld.config                                  O_RDONLY                      -1
-tee       22656   29220   5000    /lib/libc.so.1                                     O_RDONLY                       3
-tee       22656   29220   5000    /usr/lib/locale/en_US.UTF-8/en_US.UTF-8.so.3       O_RDONLY                       3
-tee       22656   29220   5000    /usr/lib/locale/en_US.UTF-8/methods_unicode.so.3   O_RDONLY                       3
-tee       22656   29220   5000    /tmp/test1                                         O_WRONLY | O_APPEND | O_CREAT     3
-cat       22655   29220   5000    /var/ld/ld.config                                  O_RDONLY                      -1
-cat       22655   29220   5000    /lib/libc.so.1                                     O_RDONLY                       3
-cat       22655   29220   5000    /usr/lib/locale/en_US.UTF-8/en_US.UTF-8.so.3       O_RDONLY                       3
-cat       22655   29220   5000    /usr/lib/locale/en_US.UTF-8/methods_unicode.so.3   O_RDONLY                       3
-cat       22655   29220   5000    /etc/inittab                                       O_RDONLY                       3
- \end{lstlisting}
-
-\subsection{Resolução do exercício opcional}
-Para modificar o programa para que apenas os ficheiros com "/etc" no caminho sejam detetados, necessitamos apenas de adicionar o predicado \textbf{$/strstr(self->pathname,"/etc") != NULL/$} às duas probes detectadas por \textbf{syscall::openat*:return}, produzindo o ficheiro \textbf{ex1\_opt.d}:
-
- \begin{lstlisting}[basicstyle=\scriptsize]
- #!/usr/sbin/dtrace -s
-
-/*
- ********************************************************************************
- *   Copyright(C) 2016 Filipe Oliveira
- *   HPC Group, Computer Science Dpt.
- *   University of Minho
- *   All Rights Reserved.
- ********************************************************************************
- *   Content : simple openat and openat64 system calls tracer 
- *             with /etc/ on its pathname
- *     
- ********************************************************************************/
-
-#pragma D option quiet
-
-dtrace:::BEGIN {
-  printf("%-10s%-8s%-8s%-8s%-30s%-27s%-5s\n",  "EXEC" , "PID", "UID" , "GID", "ABS PATH" , "FLAGS", "RETURNED VALUE");
-}
-
-/* will catch openat and openat64 */
-syscall::openat*:entry
-{
-  self->pathname =copyinstr(arg1);
-  self->flags = arg2;
-}
-
-/* will catch openat and openat64 */
-syscall::openat*:return
-
-/strstr(self->pathname,"/etc") != NULL/
-{
-  printf("%-10s%-8d%-8d%-8d%-30s", execname, pid, uid, gid, self->pathname);
-  /*if its not O_WRONLY or O_RDWR then its implicitly O_RDONLY */
-  printf( "%-9s" , self->flags & O_WRONLY ? " O_WRONLY " : self->flags & O_RDWR ? " O_RDWR " : " O_RDONLY " ); 
-  printf( "%-9s" , self->flags & O_APPEND ? "| O_APPEND " : "" );
-  printf( "%-9s" , self->flags & O_CREAT ? "| O_CREAT " : "" );
-  printf("%5i\n", arg1);
-}
- \end{lstlisting}
-
-Com o seguinte exemplo de retorno de execução:
-
-\begin{lstlisting}[style=esc]
-EXEC      PID     UID     GID     ABS PATH                      FLAGS                      RETURNED VALUE
-cat       22676   29220   5000    /etc/acct                      O_RDONLY                       3
-cat       22676   29220   5000    /etc/aliases                   O_RDONLY                       3
-cat       22676   29220   5000    /etc/amd64                     O_RDONLY                       3
-cat       22676   29220   5000    /etc/anthy                     O_RDONLY                       3
-cat       22676   29220   5000    /etc/apache2                   O_RDONLY                       3
-cat       22676   29220   5000    /etc/auto_home                 O_RDONLY                       3
-cat       22676   29220   5000    /etc/auto_master               O_RDONLY                       3
-cat       22676   29220   5000    /etc/auto_share                O_RDONLY                       3
-cat       22676   29220   5000    /etc/avahi                     O_RDONLY                       3
-cat       22676   29220   5000    /etc/bash                      O_RDONLY                       3
-cat       22676   29220   5000    /etc/bonobo-activation         O_RDONLY                       3
-cat       22676   29220   5000    /etc/brand                     O_RDONLY                       3
-cat       22676   29220   5000    /etc/brltty                    O_RDONLY                       3
-cat       22676   29220   5000    /etc/certs                     O_RDONLY                       3
-cat       22676   29220   5000    /etc/compizconfig              O_RDONLY                       3
-cat       22676   29220   5000    /etc/ConsoleKit                O_RDONLY                       3
-cat       22676   29220   5000    /etc/cron.d                    O_RDONLY                       3
-cat       22676   29220   5000    /etc/crypto                    O_RDONLY                       3
-cat       22676   29220   5000    /etc/cups                      O_RDONLY                       3
-cat       22676   29220   5000    /etc/dacf.conf                 O_RDONLY                       3
-cat       22676   29220   5000    /etc/dat                       O_RDONLY                       3
-cat       22676   29220   5000    /etc/datemsk                   O_RDONLY                       3
-cat       22676   29220   5000    /etc/dbus-1                    O_RDONLY                       3
-cat       22676   29220   5000    /etc/default                   O_RDONLY                       3
-cat       22676   29220   5000    /etc/defaultrouter             O_RDONLY                       3
-cat       22676   29220   5000    /etc/dev                       O_RDONLY                       3
-cat       22676   29220   5000    /etc/devices                   O_RDONLY                       3
-cat       22676   29220   5000    /etc/devlink.tab               O_RDONLY                       3
-cat       22676   29220   5000    /etc/dfs                       O_RDONLY                       3
-cat       22676   29220   5000    /etc/dhcp                      O_RDONLY                       3
-cat       22676   29220   5000    /etc/dladm                     O_RDONLY                       3
-cat       22676   29220   5000    /etc/drirc                     O_RDONLY                       3
-cat       22676   29220   5000    /etc/driver                    O_RDONLY                       3
-cat       22676   29220   5000    /etc/driver_aliases            O_RDONLY                       3
-cat       22676   29220   5000    /etc/driver_classes            O_RDONLY                       3
-cat       22676   29220   5000    /etc/dumpadm.conf              O_RDONLY                       3
-cat       22676   29220   5000    /etc/dumpdates                 O_RDONLY                       3
-cat       22676   29220   5000    /etc/emulexDiscConfig          O_RDONLY                       3
-cat       22676   29220   5000    /etc/emulexRMConfig            O_RDONLY                       3
-cat       22676   29220   5000    /etc/emulexRMOptions           O_RDONLY                       3
-cat       22676   29220   5000    /etc/flash                     O_RDONLY                       3
-cat       22676   29220   5000    /etc/fm                        O_RDONLY                       3
-cat       22676   29220   5000    /etc/fonts                     O_RDONLY                       3
-cat       22676   29220   5000    /etc/foomatic                  O_RDONLY                       3
-cat       22676   29220   5000    /etc/format.dat                O_RDONLY                       3
-cat       22676   29220   5000    /etc/fs                        O_RDONLY                       3
-cat       22676   29220   5000    /etc/ftpd                      O_RDONLY                       3
-cat       22676   29220   5000    /etc/ftpusers                  O_RDONLY                       3
-cat       22676   29220   5000    /etc/gconf                     O_RDONLY                       3
-cat       22676   29220   5000    /etc/gdm                       O_RDONLY                       3
-cat       22676   29220   5000    /etc/gnome-vfs-2.0             O_RDONLY                       3
-cat       22676   29220   5000    /etc/gnome-vfs-mime-magic      O_RDONLY                       3
-cat       22676   29220   5000    /etc/gnu                       O_RDONLY                       3
-cat       22676   29220   5000    /etc/group                     O_RDONLY                       3
-cat       22676   29220   5000    /etc/gss                       O_RDONLY                       3
-cat       22676   29220   5000    /etc/gtk-2.0                   O_RDONLY                       3
-cat       22676   29220   5000    /etc/hal                       O_RDONLY                       3
-cat       22676   29220   5000    /etc/hba.conf                  O_RDONLY                       3
-cat       22676   29220   5000    /etc/hostid                    O_RDONLY                       3
-cat       22676   29220   5000    /etc/hosts                     O_RDONLY                       3
-cat       22676   29220   5000    /etc/hp                        O_RDONLY                       3
-cat       22676   29220   5000    /etc/ibadm                     O_RDONLY                       3
-cat       22676   29220   5000    /etc/ima.conf                  O_RDONLY                       3
-cat       22676   29220   5000    /etc/inet                      O_RDONLY                       3
-cat       22676   29220   5000    /etc/inetd.conf                O_RDONLY                       3
- \end{lstlisting}
-
-\newpage
-\section{}
-
-\epigraph{Mostrar para os processos que estão a correr no sistema as seguintes estatísticas, com valores obtidos durante cada iteração:
-a)
-\begin{itemize}
-\item número de tentativas de abrir ficheiros existentes;
-\item número de tentativas para criar ficheiros;
-\item número de tentativas bem-sucedidas.
-\end{itemize}
-\\
-b) Repetidamente, com um período (especificado em segundos) passado como argumentos da linha de comandos deve imprimir:
-\begin{itemize}
-\item  hora e dia atual em formato legível.
-\item as estatísticas recolhidas por PID e respetivo o nome.
-\end{itemize}
-}
-\par 
-\subsection{}
-Utilizando o script desenvolvido no exercício anterior, será necessário adicionar varáveis de agregação e contar cada tipo de abertura de ficheiro. Ora, por \textbf{\say{número de tentativas de abrir ficheiros existentes}} podemos considerar o número de aberturas de ficheiro sem a flag \textbf{O\_CREAT}, o que se traduz no predicado $/( arg2  \&  O\_CREAT) == 0 /$. Analogamente \textbf{\say{número de tentativas para criar ficheiros}} será traduzido no predicado $/ ( arg2  \&  O\_CREAT ) == O\_CREAT /$, ambos predicados a serem incluidos para as 2 probes descritas por \texbf{syscall::openat*:entry}.\par 
-Resta-nos  traduzir \textbf{\say{número de tentativas bem-sucedidas}}. Ora, analisando a descrição da função openat() percebemos que apenas quando o descritor de ficheiro toma o valor -1 poderemos considerar que não foi bem sucedida a operação de abertura, que se traduz no predicado $//arg1 >= 0/$ para as 2 probes descritas por \textbf{syscall::openat*:return}.\par Definidas as iterações que estão ou não incluídas em cada regra resta-nos criar as variáveis que agregam a informação sendo estas:
-\begin{lstlisting}
-@successfull[ pid ];
-@open_request[  pid ];
-@create_request[  pid ];
- \end{lstlisting}
-a serem alteradas a cada iteração (via count()) nas regras especificadas no ficheiro completo \textbf{ex2a.d}. Denote também que no início e fim do script são impressos o cabeçalho e as variáveis  que agregam a informação por \textbf{pid}:
-\begin{lstlisting}
-#!/usr/sbin/dtrace -s
-
-/*
- ********************************************************************************
- *   Copyright(C) 2016 Filipe Oliveira
- *   HPC Group, Computer Science Dpt.
- *   University of Minho
- *   All Rights Reserved.
- ********************************************************************************
- *   Content : simple openat and openat64 system calls tracer and agregator by
- *             by pid and opening mode
- *     
- ********************************************************************************/
-
-#pragma D option quiet
- 
-dtrace:::BEGIN {
- printf("*********************************************************************************\n");
- printf("openat and openat64 syscalls aggregator\n");
- printf("!=O_CREAT ::  opening files already in system\n");
- printf("  O_CREAT ::  opening files with flag to create\n"); 
- printf("    #SUCC ::  sucessfull openat and openat64 system calls\n");
- printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
-}
-
-/* will catch openat and openat64 number of tries to create file */
-syscall::openat*:entry 
-/( arg2 & O_CREAT) == 0 /
-{
-  @open_request[ pid ] = count();
-}
-
-/* will catch openat and openat64 number of tries to create file */
-syscall::openat*:entry 
-/ ( arg2 & O_CREAT ) == O_CREAT /
-{
-  @create_request[ pid ] = count();
-}
-
-/* will catch openat and openat64 sucessfull file open
- * from linux man: " On success, openat() returns a new file descriptor. 
- * On error, -1 is returned and errno is set to indicate the error."  */
-syscall::openat*:return
-/arg1 >= 0/
-{
-  @successfull[ pid ] = count();
-}
-
-dtrace:::END {
- printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
- printf( "%-6s\t%10s\t%10s\t%10s\n", "pid", "!=O_CREAT", "O_CREAT","#SUCC" );
- printf("*********************************************************************************\n");
- printa( "%6d\t%@10d\t%@10d\t%@10d\n", @open_request, @create_request, @successfull );
-  clear(@open_request);
-  clear(@create_request);
-  clear(@successfull);
-}
- \end{lstlisting}
-
-Atente no exemplo do output do script:
-
-\begin{lstlisting}[basicstyle=\scriptsize]
-a57816@solaris11:/share/jade/a57816/ESC_DTRACE$ ./ex2a.d 
-*********************************************************************************
-openat and openat64 syscalls aggregator
-!=O_CREAT ::  opening files already in system
-  O_CREAT ::  opening files with flag to create
-    #SUCC ::  sucessfull openat and openat64 system calls
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-^C
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-pid      !=O_CREAT         O_CREAT           #SUCC
-*********************************************************************************
-  1351           1               0               1
-  1447           3               0               3
- 22701           4               0               3
- 22487           5               0               5
- 22699           7               0               4
- 22700          11               0               8
- 22698         196               0             190
- \end{lstlisting}
-
-\par 
-\subsection{}
-Relativamente às estatísticas agregadas e impressas repetidamente, com um período (especificado em segundos) passado como argumentos da linha de comandos, podemos recorrer à variável \textbf{walltimestamp} por forma a obter o valor da hora e dia atual em formato legível. Para obtermos o valor em segundos da linha de comandos resta-nos verificar o valor da variável \textbf{\$1} e recorrer a \textbf{tick-\$1s} para imprimir a um ritmo de \$1 segundos.\par 
-Por forma a imprimirmos apenas os valores agregados entre duas medições necessitamos de limpar os valores presentes nas variáveis agregadas. Tal é realizado recorrendo ao método \textbf{trunc}:
-\begin{lstlisting}
-  trunc(@open_request);
-  trunc(@create_request);
-  trunc(@successfull);
- \end{lstlisting}
-Dado considerar que esta alínea do exercício ser um complemento do primeiro requisito foram adicionadas as variáveis:
-
-\begin{lstlisting}
-@all_successfull[ pid, execname ];
-@all_open_request[  pid, execname ];
-@all_create_request[  pid, execname ];
- \end{lstlisting}
- que mantêm a possibilidade do utilizador visualizar no término da script os valores completos agregados.
-Assim, o ficheiro \textbf{ex2b.d} apresenta o seguinte formato:
-
-\begin{lstlisting}
-#!/usr/sbin/dtrace -s
-
-/*
- ********************************************************************************
- *   Copyright(C) 2016 Filipe Oliveira
- *   HPC Group, Computer Science Dpt.
- *   University of Minho
- *   All Rights Reserved.
- ********************************************************************************
- *   Content : simple openat and openat64 system calls tracer and agregator by
- *             by pid and opening mode at a constant time rate passed by argumment
- *     
- ********************************************************************************/
-
-#pragma D option quiet
-
-dtrace:::BEGIN {
-  printf("*********************************************************************************\n");
-  printf("openat and openat64 syscalls aggregator by constant time rate passed by argumment\n");
-  printf("\n TIME RATE %d seconds \n", $1);
-  printf("START TIME %Y \n\n", walltimestamp);
-  printf("!=O_CREAT ::  opening files already in system\n");
-  printf("  O_CREAT ::  opening files with flag to create\n");
-  printf("    #SUCC ::  sucessfull openat and openat64 system calls\n");
-  printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
-  printf( "%-6s\t%-20s\t%10s\t%10s\t%10s\n", "pid", "execname", "!=O_CREAT", "O_CREAT","#SUCC" );
-  printf("* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
-
-}
-
-/* will catch openat and openat64 number of tries to create file */
-syscall::openat*:entry 
-/( arg2 & O_CREAT) == 0 /
-{
-  @open_request[  pid, execname ] = count();
-  @all_open_request[  pid, execname ] = count();
-}
-
-/* will catch openat and openat64 number of tries to create file */
-syscall::openat*:entry 
-/ ( arg2 & O_CREAT ) == O_CREAT /
-{
-  @create_request[  pid, execname ] = count();
-  @all_create_request[  pid, execname ] = count();
-}
-
-/* will catch openat and openat64 sucessfull file open
- * from linux man: " On success, openat() returns a new file descriptor. 
- * On error, -1 is returned and errno is set to indicate the error."  */
-syscall::openat*:return
-/arg1 >= 0/
-{
-  @successfull[ pid, execname ] = count();
-  @all_successfull[ pid, execname ] = count();
-}
-
-tick-$1s {
-  printf("\n[ %20Y * * * * * * * * * * \n", walltimestamp);
-  printa( "%6d\t%-20s\t%@10d\t%@10d\t%@10d\n", @open_request, @create_request, @successfull );
-  trunc(@open_request);
-  trunc(@create_request);
-  trunc(@successfull);
-  printf("                                         * * * * * * * * * * * * * * * * * * * *]\n");
-}
-
-dtrace:::END {
-  printf("\n**************************** AGGREGATED RESULTS *********************************\n");
-  printf("                               %20Y \n\n", walltimestamp);
-  printa( "%6d\t%-20s\t%@10d\t%@10d\t%@10d\n", @all_open_request, @all_create_request, @all_successfull );
-  printf("\n*********************************************************************************\n");
-  clear(@all_open_request);
-  clear(@all_create_request);
-  clear(@all_successfull);
-  clear(@open_request);
-  clear(@create_request);
-  clear(@successfull);
-}
-
- \end{lstlisting}
-
-Atente no exemplo do output do script:
-
-\begin{lstlisting}[basicstyle=\scriptsize]
-*********************************************************************************
-openat and openat64 syscalls aggregator by constant time rate passed by argumment
-
- TIME RATE 1 seconds 
-START TIME 2016 Apr 10 03:52:13 
-
-!=O_CREAT ::  opening files already in system
-  O_CREAT ::  opening files with flag to create
-    #SUCC ::  sucessfull openat and openat64 system calls
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-pid     execname                 !=O_CREAT         O_CREAT           #SUCC
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-[ 2016 Apr 10 03:52:13 * * * * * * * * * * 
- 22713  ex2b.d                           2               0               2
-                                         * * * * * * * * * * * * * * * * * * * *]
-
-[ 2016 Apr 10 03:52:14 * * * * * * * * * * 
-   259  utmpd                            3               1               4
-                                         * * * * * * * * * * * * * * * * * * * *]
-
-[ 2016 Apr 10 03:52:15 * * * * * * * * * * 
-                                         * * * * * * * * * * * * * * * * * * * *]
-
-[ 2016 Apr 10 03:52:16 * * * * * * * * * * 
-                                         * * * * * * * * * * * * * * * * * * * *]
-
-[ 2016 Apr 10 03:52:17 * * * * * * * * * * 
-                                         * * * * * * * * * * * * * * * * * * * *]
-
-[ 2016 Apr 10 03:52:18 * * * * * * * * * * 
-                                         * * * * * * * * * * * * * * * * * * * *]
-
-[ 2016 Apr 10 03:52:19 * * * * * * * * * * 
-                                         * * * * * * * * * * * * * * * * * * * *]
-
-[ 2016 Apr 10 03:52:20 * * * * * * * * * * 
-                                         * * * * * * * * * * * * * * * * * * * *]
-
-[ 2016 Apr 10 03:52:21 * * * * * * * * * * 
-                                         * * * * * * * * * * * * * * * * * * * *]
-
-[ 2016 Apr 10 03:52:22 * * * * * * * * * * 
- 22487  bash                             1               0               1
- 22714  cat                             35               0              30
-                                         * * * * * * * * * * * * * * * * * * * *]
-
-[ 2016 Apr 10 03:52:23 * * * * * * * * * * 
-                                         * * * * * * * * * * * * * * * * * * * *]
-^C
-
-**************************** AGGREGATED RESULTS *********************************
-                               2016 Apr 10 03:52:24 
-
- 22487  bash                             1               0               1
- 22713  ex2b.d                           2               0               2
-   259  utmpd                            3               1               4
- 22714  cat                             35               0              30
-
-*********************************************************************************
- \end{lstlisting}
- 
- 
- 
 \newpage
 \section{Conclusão}
 Tal como mencionado no início do presente caso de estudo a ferramenta DTrace mostra-se bastante útil e única em termos de funcionalidades quando necessitamos de agregar informação de vários processos/threads,etc. Ou seja, no contexto da computação paralela será extremamente interessante recorrer a esta ferramenta de traçado dinâmico na execução de algoritmos paralelos. \par 
