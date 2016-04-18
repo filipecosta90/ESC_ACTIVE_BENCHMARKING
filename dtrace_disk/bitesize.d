@@ -85,6 +85,6 @@ dtrace:::END
   printf("\n%8s  %s\n", "PID", "CMD");
   printa("%8d  %S\n%@d\n", @Size);
   printf("\n\n##########################################");
-  printf("\n\ntotal duration: %d", start - end );
+  printf("\n\ntotal duration: %d", end - start );
   printf("\n\n##########################################");
 }

@@ -59,7 +59,7 @@ dtrace:::END
 	printf("%6s %-12s %6s %s\n", "PID", "CMD", "KB", "FILE");
 	printa("%6d %-12.12s %@6d %s\n", @files);
   printf("\n\n##########################################");
-  printf("\n\ntotal duration: %d", start - end );
+  printf("\n\ntotal duration: %d", end - start );
   printf("\n\n##########################################");
 
 }

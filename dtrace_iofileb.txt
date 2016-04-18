@@ -14,7 +14,7 @@ Tracing... Hit Ctrl-C to end.
 	             Vangel Bojaxhi, Ben England, Vikentsi Lapa,
 	             Alexey Skidanov.
 
-	Run began: Mon Apr 18 21:41:08 2016
+	Run began: Mon Apr 18 23:21:54 2016
 
 	CPU utilization Resolution = 0.000 seconds.
 	CPU utilization Excel chart enabled
@@ -31,22 +31,22 @@ Tracing... Hit Ctrl-C to end.
 	Throughput test with 1 process
 	Each process writes a 40894464 kByte file in 4 kByte records
 
-	Children see throughput for  1 initial writers 	=  471204.97 kB/sec
-	Parent sees throughput for  1 initial writers 	=  388055.23 kB/sec
-	Min throughput per process 			=  471204.97 kB/sec 
-	Max throughput per process 			=  471204.97 kB/sec
-	Avg throughput per process 			=  471204.97 kB/sec
+	Children see throughput for  1 initial writers 	=  475566.38 kB/sec
+	Parent sees throughput for  1 initial writers 	=  409435.83 kB/sec
+	Min throughput per process 			=  475566.38 kB/sec 
+	Max throughput per process 			=  475566.38 kB/sec
+	Avg throughput per process 			=  475566.38 kB/sec
 	Min xfer 					= 40894464.00 kB
-	CPU Utilization: Wall time   86.787    CPU time   77.598    CPU utilization  89.41 %
+	CPU Utilization: Wall time   85.991    CPU time   77.899    CPU utilization  90.59 %
 
 
-	Children see throughput for  1 rewriters 	=  469918.75 kB/sec
-	Parent sees throughput for  1 rewriters 	=  394192.54 kB/sec
-	Min throughput per process 			=  469918.75 kB/sec 
-	Max throughput per process 			=  469918.75 kB/sec
-	Avg throughput per process 			=  469918.75 kB/sec
+	Children see throughput for  1 rewriters 	=  467745.75 kB/sec
+	Parent sees throughput for  1 rewriters 	=  395726.29 kB/sec
+	Min throughput per process 			=  467745.75 kB/sec 
+	Max throughput per process 			=  467745.75 kB/sec
+	Avg throughput per process 			=  467745.75 kB/sec
 	Min xfer 					= 40894464.00 kB
-	CPU utilization: Wall time   87.025    CPU time   70.885    CPU utilization  81.45 %
+	CPU utilization: Wall time   87.429    CPU time   71.363    CPU utilization  81.62 %
 
 
 
@@ -55,30 +55,28 @@ Tracing... Hit Ctrl-C to end.
 "Record size = 4 kBytes "
 "Output is in kBytes/sec"
 
-"  Initial write "  471204.97 
+"  Initial write "  475566.38 
 
-"        Rewrite "  469918.75 
+"        Rewrite "  467745.75 
 
 
 "CPU utilization report Y-axis is type of test X-axis is number of processes"
 "Record size = 4 kBytes "
 "Output is in CPU%"
 
-"  Initial write "      89.41 
+"  Initial write "      90.59 
 
-"        Rewrite "      81.45 
+"        Rewrite "      81.62 
 
 
 iozone test complete.
    PID CMD              KB FILE
- 10091 iozone            1 <none>
-     0 sched             5 <none>
- 10090 dtrace            6 <none>
-     5 zpool-rpool  91564366 <none>
+     0 sched             1 <none>
+     5 zpool-rpool  90691591 <none>
 
 
 ##########################################
 
-total duration: 18446743846030339948
+total duration: 224359338575
 
 ##########################################
