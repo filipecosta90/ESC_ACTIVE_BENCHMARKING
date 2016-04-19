@@ -2,26 +2,31 @@
 
 #pragma D option quiet
 
-syscall::open*:return
-/arg1 == 5/
+syscall::open*:entry
 {
- start = timestamp; 
+  self->pathname = copyinstr(arg1); 
+}
+
+syscall::open*:return
+/strstr(self->pathname,"iozone.DUMMY.0") != NULL /
+{
+  self->start = timestamp; 
   total_size = 0;
 }
 
-io:::start
-{
-      this->size = args[0]->b_bcount;
-
-        /* store details */
-        total_size  = total_size + this->size;
+fsinfo:::write 
+/strstr(args[0]->fi_pathname,"iozone.DUMMY.0") != NULL /
+{ 
+  total_size = total_size + arg1 ; 
 }
 
 syscall::close*:return
-/arg0 == 5/
+/total_size > 0 && self->start /
 {
- stop_t = timestamp; 
- printf("total time: %d\n", stop_t - start );
- printf("total bytes: %d\n", total_size );
- total_size = 0;
+  self->stop_t = timestamp; 
+  printf("\n\n###############################################\n");
+  printf("total time: %d\n", self->stop_t - self->start );
+  printf("total size: %d\n", total_size);
+  printf("###############################################\n\n");
+  total_size = 0;
 }
