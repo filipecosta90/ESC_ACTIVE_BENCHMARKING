@@ -16,8 +16,9 @@ syscall::open*:return
 
 fsinfo:::write 
 /strstr(args[0]->fi_pathname,"iozone.DUMMY.0") != NULL /
-{ 
-  total_size = total_size + arg1 ; 
+{
+  kb = arg1 / 1024;
+  total_size = total_size + kb ; 
 }
 
 syscall::close*:return
