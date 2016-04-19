@@ -410,6 +410,7 @@ Da análise do ficheiro truss\_report\_write.txt reparamos que o ficheiro de esc
 
 Podemos retirar dois aspectos importantes do seguinte excerto, sendo estes o \textbf{método de medição -- via getrusage\footnote{\url{http://linux.die.net/man/2/getrusage}}},  e o textbf{nome do ficheiro -- iozone.DUMMY.0} , o seu respectivo \textbf{descritor de ficheiro  -- 5}  e \textbf{ tamanho de record utilizado - 4096 bytes }.\par 
 Podemos ainda analisar o momento do término da contagem do tempo para a operação de \texbf{initial write}. Um pouco para nosso espanto a medição do tempo é terminada antes da garantia de sincronização dos dados com disco (conferir linhas 10223827 e 10223828 do próximo excerto). Ou seja, este tipo de medição não será certamente o mais preciso uma vez que poderão ocorrer descrepâncias entre o tempo calculado pela ferramenta e o tempo real que a ferramenta demora a completar a operação de escrita e sincronização. \textbf{Encontramos a primeira imprecisão!}
+\label{imprecisao}
 \begin{lstlisting}
 ...
 ...
@@ -459,16 +460,156 @@ Continuando a análise do ficheiro truss\_report\_write.txt reparamos que o fich
 ...
 ...
 \end{lstlisting}
-
+\newpage
 \subsection{Take 3 -- uma análise com dtrace}
 
 Deste padrão de open() , write(), e read() podemos criar um ficheiro dtrace que calcule o tempo entre as syscalls open() e close() com o descritor de ficheiro = 5, e calcular o total de bytes escrito pelas syscalls write() entre open() e close().
 
-\newpage
-\section{Conclusão}
-Tal como mencionado no início do presente caso de estudo a ferramenta DTrace mostra-se bastante útil e única em termos de funcionalidades quando necessitamos de agregar informação de vários processos/threads,etc. Ou seja, no contexto da computação paralela será extremamente interessante recorrer a esta ferramenta de traçado dinâmico na execução de algoritmos paralelos. \par 
-Este foi apenas um trabalho introdutório mas permitiu demostrar a capacidade de recolher e ao mesmo tempo tratar dados de todo um sistema extremamente complexo e vasto com apenas uma ferramenta. O caso de estudo ultrapassa portanto os resultados obtidos pelas scripts geradas, prendendo-se uma vez mais com o desenvolvimento de capacidade  prática no uso da ferramenta, e envolvimento com métodos de tratamento de grandes volumes de dados, e análise de métricas de sistemas de computação de alta perfomance.\par Retrata sobretudo a capacidade analisar funcionalidades disponibilizadas e a sua correta aplicação na resolução de problemas de computação tendo sempre em conta o mínimo de alteração possível na performance dos kernels/sistemas a analisar.
+\begin{lstlisting}
+#!/usr/sbin/dtrace -s
 
+#pragma D option quiet
+
+syscall::open*:entry
+{
+  self->pathname = copyinstr(arg1); 
+}
+
+syscall::open*:return
+/strstr(self->pathname,"iozone.DUMMY.0") != NULL /
+{
+  self->start = timestamp; 
+  total_size = 0;
+}
+
+fsinfo:::write 
+/strstr(args[0]->fi_pathname,"iozone.DUMMY.0") != NULL /
+{
+  kb = arg1 / 1024;
+  total_size = total_size + kb ; 
+}
+
+syscall::close*:return
+/total_size > 0 && self->start /
+{
+  self->stop_t = timestamp; 
+  printf("\n\n###############################################\n");
+  printf("total time: %d\n", self->stop_t - self->start );
+  printf("total size: %d\n", total_size);
+  printf("###############################################\n\n");
+  total_size = 0;
+}
+\end{lstlisting}
+
+Ora, a execução do script dtrace e ferramenta iozone resultou no seguinte output:
+
+\begin{lstlisting}
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.434 $
+		Compiled for 64 bit mode.
+		Build: Solaris10 
+
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer,
+	             Vangel Bojaxhi, Ben England, Vikentsi Lapa,
+	             Alexey Skidanov.
+
+	Run began: Tue Apr 19 03:18:52 2016
+
+	CPU utilization Resolution = 0.000 seconds.
+	CPU utilization Excel chart enabled
+	Excel chart generation enabled
+	File size set to 40894464 kB
+	Command line used: /opt/csw/bin/iozone -+u -R -i 0 -S 20480 -s 39g -b /export/home/a57816/ESC_ACTIVE_BENCHMARKING_HOME/teste_write.xls -l 1 -u 1
+	Output is in kBytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 20480 kBytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+	Min process = 1 
+	Max process = 1 
+	Throughput test with 1 process
+	Each process writes a 40894464 kByte file in 4 kByte records
+
+	Children see throughput for  1 initial writers 	=  326724.00 kB/sec
+	Parent sees throughput for  1 initial writers 	=  309091.96 kB/sec
+	Min throughput per process 			=  326724.00 kB/sec 
+	Max throughput per process 			=  326724.00 kB/sec
+	Avg throughput per process 			=  326724.00 kB/sec
+	Min xfer 					= 40894464.00 kB
+	CPU Utilization: Wall time  125.165    CPU time  125.165    CPU utilization 100.00 %
+
+
+
+###############################################
+total time: 132303544264
+total size: 40894464
+###############################################
+
+
+	Children see throughput for  1 rewriters 	=  338724.72 kB/sec
+	Parent sees throughput for  1 rewriters 	=  320792.40 kB/sec
+	Min throughput per process 			=  338724.72 kB/sec 
+	Max throughput per process 			=  338724.72 kB/sec
+	Avg throughput per process 			=  338724.72 kB/sec
+	Min xfer 					= 40894464.00 kB
+	CPU utilization: Wall time  120.731    CPU time  120.730    CPU utilization 100.00 %
+
+
+
+###############################################
+total time: 127477939460
+total size: 40894464
+###############################################
+
+
+
+
+"Throughput report Y-axis is type of test X-axis is number of processes"
+"Record size = 4 kBytes "
+"Output is in kBytes/sec"
+
+"  Initial write "  326724.00 
+
+"        Rewrite "  338724.72 
+
+
+"CPU utilization report Y-axis is type of test X-axis is number of processes"
+"Record size = 4 kBytes "
+"Output is in CPU%"
+
+"  Initial write "     100.00 
+
+"        Rewrite "     100.00 
+
+
+iozone test complete.
+\end{lstlisting}
+
+Para o caso de initial write o script dtrace calculou 132303544264 nano-segundos como o tempo necessário à escrita -- equivalente a 132.30 segundos. Encontramos já neste valor uma pequena descrepância versus os 125.165 segundos de Wall time apresentados pela ferramenta iozone. Analisemos o throughput médio calculado: 40894464 KB / 132.30 seg = 309104.036 KB/sec, também este diferente dos 326724.00 KB/sec calculados pela ferramenta iozone. \par 
+Procedendo de igual forma para re-write temos como tempo calculado pelo script dtrace 127477939460 nano-segundos como o tempo necessário à re-escrita -- equivalente a 127.477 segundos.  
+Encontramos novamente  uma pequena descrepância versus os 120.731 segundos de Wall time apresentados pela ferramenta iozone. Analisemos o throughput médio calculado: 40894464 KB / 127.477 seg = 320798.763 KB/sec , também este diferente dos 338724.72 KB/sec calculados pela ferramenta iozone. \par
+De um modo constante a ferramenta iozone foi mais "otimista" nos valores medidos, e acreditamos que a \textbf{diferença de valores obtidos se prende com a imprecisão que detectamos anteriormente na secção \ref{imprecisao}}.
+\newpage
+\section{Trabalho Futuro}
+
+\epigraph{
+Running a benchmark is the easy part. Understanding a benchmark can take much longer.
+\vspace{3mm}\\ \url{http://www.brendangregg.com/ActiveBenchmarking/bonnie++.html}}\par 
+
+
+
+
+Tal como mencionado em trabalhos anteriores a ferramenta DTrace mostra-se bastante útil e única em termos de funcionalidades quando necessitamos de agregar informação de vários processos/threads,etc. Contudo, esta representa uma pequena porção de todo o trabalho de análise e tratamento de dados necessário para a validação de valores apresentados por ferramentas de benchmarking como o caso da iozone. Sem a análise anterior via \textbf{iostat} e \textbf{truss} seria impossível tirar qualquer tipo de conclusão.\par
+Ora, o trabalho futuro prende-se com o teste de outras funcionalidades da ferramenta iozone corroborando/desmentindo os valores nela anunciados.
+Por vezes, durante o processo de compreensão da ferramenta iozone foi necessário analisar instrução-a-instrução resultante, com algumas descobertas interessantes.
+\par 
+Retratamos sobretudo a capacidade analisar funcionalidades disponibilizadas e a sua correta aplicação na resolução de problemas de computação tendo sempre em conta o mínimo de alteração possível na medição de perfomance do sistema analisado.
 
 
 
