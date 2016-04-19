@@ -1,0 +1,86 @@
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.434 $
+		Compiled for 64 bit mode.
+		Build: Solaris10 
+
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer,
+	             Vangel Bojaxhi, Ben England, Vikentsi Lapa,
+	             Alexey Skidanov.
+
+	Run began: Tue Apr 19 03:18:52 2016
+
+	CPU utilization Resolution = 0.000 seconds.
+	CPU utilization Excel chart enabled
+	Excel chart generation enabled
+	File size set to 40894464 kB
+	Command line used: /opt/csw/bin/iozone -+u -R -i 0 -S 20480 -s 39g -b /export/home/a57816/ESC_ACTIVE_BENCHMARKING_HOME/teste_write.xls -l 1 -u 1
+	Output is in kBytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 20480 kBytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+	Min process = 1 
+	Max process = 1 
+	Throughput test with 1 process
+	Each process writes a 40894464 kByte file in 4 kByte records
+
+	Children see throughput for  1 initial writers 	=  326724.00 kB/sec
+	Parent sees throughput for  1 initial writers 	=  309091.96 kB/sec
+	Min throughput per process 			=  326724.00 kB/sec 
+	Max throughput per process 			=  326724.00 kB/sec
+	Avg throughput per process 			=  326724.00 kB/sec
+	Min xfer 					= 40894464.00 kB
+	CPU Utilization: Wall time  125.165    CPU time  125.165    CPU utilization 100.00 %
+
+
+
+###############################################
+total time: 132303544264
+total size: 40894464
+###############################################
+
+
+	Children see throughput for  1 rewriters 	=  338724.72 kB/sec
+	Parent sees throughput for  1 rewriters 	=  320792.40 kB/sec
+	Min throughput per process 			=  338724.72 kB/sec 
+	Max throughput per process 			=  338724.72 kB/sec
+	Avg throughput per process 			=  338724.72 kB/sec
+	Min xfer 					= 40894464.00 kB
+	CPU utilization: Wall time  120.731    CPU time  120.730    CPU utilization 100.00 %
+
+
+
+###############################################
+total time: 127477939460
+total size: 40894464
+###############################################
+
+
+
+
+"Throughput report Y-axis is type of test X-axis is number of processes"
+"Record size = 4 kBytes "
+"Output is in kBytes/sec"
+
+"  Initial write "  326724.00 
+
+"        Rewrite "  338724.72 
+
+
+"CPU utilization report Y-axis is type of test X-axis is number of processes"
+"Record size = 4 kBytes "
+"Output is in CPU%"
+
+"  Initial write "     100.00 
+
+"        Rewrite "     100.00 
+
+
+iozone test complete.
+
