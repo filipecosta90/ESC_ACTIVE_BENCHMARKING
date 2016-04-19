@@ -362,14 +362,107 @@ que apresenta o seguinte resultado:
 iozone test complete.
 \end{lstlisting}
  
- \subsection{Take 1 -- uma análise com truss}
+ \subsection{Take 1 -- uma análise com iostat}
 Ora, dos resultados anteriores, retiramos que o máximo de throughput do sistema de ficheiros e dispositivo de armazenamento físico tem o valor de 489166.09 KB/s para operações de escrita e 463768.00 KB/s para operações de re-escrita. Este último resultado apresentado leva-nos a duvidar da precisão de medição da ferramenta. Outro indicador que nos leva a duvidar da veracidade da medição prende-se com os valores altíssimos de utilização de CPU time de uma aplicação implicitamente \textbf{IO BOUND}.\par 
+Corramos novamente a ferramenta analisando agora o input/output recorrendo à ferramenta \textbf{iostat}, criando uma relação gráfica entre os valores apresentados por ambas as leituras na figura \ref{fig:iostat}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.1\columnwidth]{EPS/iostat.eps}
+\caption{Relação de disk performance medida pela ferramenta \texbf{iostat} vs performance medida pela ferramenta \textbf{iozone}. Para command line options /opt/csw/bin/iozone -+u -R -i 0 -S 20480 -s 39g -b /export/home/a57816/ESC\_ACTIVE\_BENCHMARKING\_HOME/teste\_write.xls -l 1 -u 1
+}
+\label{fig:iostat}
+\end{figure}
+
+Tal como suspeitávamos existe alguma imprecisão nos valores apresentados pela ferramenta \textbf{iozone} vs os apresentados pela ferramente \textbf{iostat}. Como era previsível o peak throughput aconteceu na acção de rewrite (521451 KBytes/sec), através da medição da ferramenta \textbf{iostat}. Tal não se revelou verdade novamente nos valores apresentados pela ferramenta \textbf{iozone}. 
+\par 
+Façamos uma análise mais profunda das systems calls que a ferramenta \textbf{iozone} realiza para o cálculo dos resultados.
+
+\subsection{Take 2 -- uma análise com truss}
+
 Analisemos o tipo de system calls realizada pela ferramenta recorrendo ao seguinte comando \textbf{truss}:
 
 \begin{lstlisting}[style=command]
 truss -o truss_report_write.txt -df /opt/csw/bin/iozone -+u -R -i 0 -S 20480 -s 39g -b /export/home/a57816/ESC_ACTIVE_BENCHMARKING_HOME/teste_write.xls -l 1 -u 1 
 \end{lstlisting}
 
+Da análise do ficheiro truss\_report\_write.txt reparamos que o ficheiro de escrita do nosso interesse é o textbf{iozone.DUMMY.0} tal como confirmado pelo seguinte excerto: 
+\begin{lstlisting}
+...
+...
+9990:- 0.0986-open("iozone.DUMMY.0", O_RDWR|O_CREAT, 0640)--= 5
+9989:- 0.0993-pollsys(0xFFFF80FFBFFFF8A0, 0, 0xFFFF80FFBFFFF920, 0x00000000) = 0
+9989:- 0.0994-getpid()----------= 9989 [9988]
+9990:- 0.1000-pollsys(0xFFFF80FFBFFFEE80, 0, 0xFFFF80FFBFFFEF00, 0x00000000) = 0
+9990:- 0.1002-getrusage(0xFFFF80FFBFFFEEA0)-----= 0
+9990:- 0.1004-write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+9990:- 0.1007-write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+9990:- 0.1010-write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+9990:- 0.1012-write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+9990:- 0.1015-write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+9990:- 0.1018-write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+9990:- 0.1020-write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+9990:- 0.1023-write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+9990:- 0.1025-write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+...
+...
+\end{lstlisting}
+
+Podemos retirar dois aspectos importantes do seguinte excerto, sendo estes o \textbf{método de medição -- via getrusage\footnote{\url{http://linux.die.net/man/2/getrusage}}},  e o textbf{nome do ficheiro -- iozone.DUMMY.0} , o seu respectivo \textbf{descritor de ficheiro  -- 5}  e \textbf{ tamanho de record utilizado - 4096 bytes }.\par 
+Podemos ainda analisar o momento do término da contagem do tempo para a operação de \texbf{initial write}. Um pouco para nosso espanto a medição do tempo é terminada antes da garantia de sincronização dos dados com disco (conferir linhas 10223827 e 10223828 do próximo excerto). Ou seja, este tipo de medição não será certamente o mais preciso uma vez que poderão ocorrer descrepâncias entre o tempo calculado pela ferramenta e o tempo real que a ferramenta demora a completar a operação de escrita e sincronização. \textbf{Encontramos a primeira imprecisão!}
+\begin{lstlisting}
+...
+...
+10223819 9990:-380.0682--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223820 9990:-380.0683--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223821 9990:-380.0683--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223822 9990:-380.0683--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223823 9990:-380.0684--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223824 9990:-380.0684--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223825 9990:-380.0684--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223826 9990:-380.0685--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223827 9990:-380.0685--getrusage(0xFFFF80FFBFFFEEA0)-----= 0
+10223828 9990:-380.6926--fdsync(5, FSYNC)--------= 0
+10223829 9990:-380.6928--close(5)----------= 0
+10223830 9990:-380.6930--_exit(0)
+...
+...
+\end{lstlisting}
+
+Continuando a análise do ficheiro truss\_report\_write.txt reparamos que o ficheiro de escrita do nosso interesse continua a ser o textbf{iozone.DUMMY.0}.
+
+
+\begin{lstlisting}
+...
+...
+10223853 9992:-383.3986--open("iozone.DUMMY.0", O_RDWR)------= 5
+10223854 9989:-383.3994--pollsys(0xFFFF80FFBFFFF8A0, 0, 0xFFFF80FFBFFFF920, 0x00000000) = 0
+10223855 9989:-383.3996--getpid()----------= 9989 [9988]
+10223856 9992:-383.4000--pollsys(0xFFFF80FFBFFFEE90, 0, 0xFFFF80FFBFFFEF10, 0x00000000) = 0
+10223857 9992:-383.4002--getrusage(0xFFFF80FFBFFFEEB0)-----= 0
+10223858 9992:-383.4004--getrusage(0xFFFF80FFBFFFEEB0)-----= 0
+10223859 9992:-383.4007--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223860 9992:-383.4010--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223861 9992:-383.4013--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223862 9992:-383.4016--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223863 9992:-383.4018--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223864 9992:-383.4021--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223865 9992:-383.4023--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223866 9992:-383.4026--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223867 9992:-383.4028--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223868 9992:-383.4031--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223869 9992:-383.4034--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223870 9992:-383.4036--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223871 9992:-383.4039--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223872 9992:-383.4042--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+10223873 9992:-383.4044--write(5, " y y y y y y y y\0\0\0\0".., 4096)--= 4096
+...
+...
+\end{lstlisting}
+
+\subsection{Take 3 -- uma análise com dtrace}
+
+Deste padrão de open() , write(), e read() podemos criar um ficheiro dtrace que calcule o tempo entre as syscalls open() e close() com o descritor de ficheiro = 5, e calcular o total de bytes escrito pelas syscalls write() entre open() e close().
 
 \newpage
 \section{Conclusão}

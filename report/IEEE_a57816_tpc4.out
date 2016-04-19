@@ -1,4 +1,6 @@
 \BOOKMARK [1][-]{section.1}{Passive Benchmarking :: uma primeira an\341lise \340 ferramenta}{}% 1
 \BOOKMARK [2][-]{subsection.1.1}{Command Line Options}{section.1}% 2
-\BOOKMARK [2][-]{subsection.1.2}{Take 1 \205 uma an\341lise com truss}{section.1}% 3
-\BOOKMARK [1][-]{section.2}{Conclus\343o}{}% 4
+\BOOKMARK [2][-]{subsection.1.2}{Take 1 \205 uma an\341lise com iostat}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{Take 2 \205 uma an\341lise com truss}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Take 3 \205 uma an\341lise com dtrace}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{Conclus\343o}{}% 6

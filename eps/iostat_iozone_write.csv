@@ -1,5 +1,3 @@
-   tty        sd0           sd1           sd2            cpu
- tin tout kps tps serv  kps tps serv  kps tps serv   us sy st id
    0  226 342   1    7    0   0    0   45   1    0    0  0  0 100
    0 1590   0   0    0    0   0    0    0   0    0    0  3  0 97
    0    0   0   0    0    0   0    0    0   0    0    0  4  0 96
