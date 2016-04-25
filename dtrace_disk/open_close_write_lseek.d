@@ -9,33 +9,35 @@ syscall::open*:entry{
 syscall::open*:return
 /strstr(self->pathname,"iozone.DUMMY.0") != NULL /
 {
-  self->start = timestamp; 
+  self->start_total = timestamp; 
   total_size = 0;
   total_time = 0;
-  fd = 1;
+  flag = 1;
 }
 
 syscall::write*:entry
-/fd == 1/
+/flag == 1/
 {
- self->time_in = timestamp;
+  self->time_in = timestamp;
 }
 
 syscall::write*:return
-/fd == 1/
+/flag == 1/
 {
- self->time_out = timestamp;
- total_time = self->time_out - self->time_in;
+  self->time_out = timestamp;
+  self->total_time = self->time_out - self->time_in;
+  total_time = total_time + self->total_time;
 }
 
-syscall::close*:return
-/total_time > 0 && self->start /
+syscall::close*:entry
+/total_time > 0 && self->start_total /
 {
-  self->stop_t = timestamp; 
+  self->stop_total = timestamp; 
   printf("\n\n###############################################\n");
-  printf("total time: %d\n", self->stop_t - self->start );
-  printf("total write time: %d", total_time);
+  printf("t time: %d\n", self->stop_total - self->start_total );
+  printf("w time: %d", total_time);
   printf("###############################################\n\n");
-  fd = 0;
+  flag = 0;
   total_time = 0;
 }
+
