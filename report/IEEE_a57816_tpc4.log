@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.16)  26 APR 2016 05:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.16)  26 APR 2016 07:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1003,7 +1003,7 @@ o.pdf EPS/iostat.eps>
 (epstopdf)             \includegraphics on input line 395.
 Package epstopdf Info: Output file is already uptodate.
 
-<EPS/iostat-eps-converted-to.pdf, id=139, 1027.84pt x 481.8pt>
+<EPS/iostat-eps-converted-to.pdf, id=159, 1027.84pt x 481.8pt>
 File: EPS/iostat-eps-converted-to.pdf Graphic file (type pdf)
 
 <use EPS/iostat-eps-converted-to.pdf>
@@ -1092,46 +1092,91 @@ Package babel Info: Redefining portuges shorthand "|
 Package babel Info: Redefining portuges shorthand "|
 (babel)             in language  on input line 628.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 690.
+(babel)             in language  on input line 629.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 690.
+(babel)             in language  on input line 687.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 687.
  [11]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 749.
+(babel)             in language  on input line 748.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 749.
+(babel)             in language  on input line 748.
  [12]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <7> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 778.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 833.
+(babel)             in language  on input line 828.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 833.
+(babel)             in language  on input line 828.
  [13]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 856.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 869.
+(babel)             in language  on input line 853.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 869.
+(babel)             in language  on input line 902.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 869.
+(babel)             in language  on input line 902.
  [14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 869.
- (./IEEE_a57816_tpc4.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 869.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 869.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 959.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 976.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 976.
+ [15]
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <7> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1052.
+
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1055.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1055.
+ [16]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1136.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1136.
+ [17]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1140.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1141.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1209.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1209.
+ [18]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1225.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1225.
+ [19]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1226.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1239.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1239.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 1239.
+ [20]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1239.
+
+(./IEEE_a57816_tpc4.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1239.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1239.
+
 Package rerunfilecheck Info: File `IEEE_a57816_tpc4.out' has not changed.
-(rerunfilecheck)             Checksum: 8B26F5D507CEF77E147AF700087AD143;596.
+(rerunfilecheck)             Checksum: 0C27D9D316EF9C492B544C77C8D1024E;1110.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 201 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 18402 strings out of 493089
- 310264 string characters out of 6134842
- 757267 words of memory out of 5000000
- 21195 multiletter control sequences out of 15000+600000
+ 18766 strings out of 493089
+ 315887 string characters out of 6134842
+ 817267 words of memory out of 5000000
+ 21233 multiletter control sequences out of 15000+600000
  11533 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,12n,49p,10405b,2038s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1156,10 +1201,10 @@ e/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/
 2015/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/20
 15/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2015
 /texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on IEEE_a57816_tpc4.pdf (14 pages, 307598 bytes).
+Output written on IEEE_a57816_tpc4.pdf (20 pages, 344267 bytes).
 PDF statistics:
- 763 PDF objects out of 1000 (max. 8388607)
- 716 compressed objects within 8 object streams
- 485 named destinations out of 1000 (max. 500000)
- 62 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1192 PDF objects out of 1200 (max. 8388607)
+ 1135 compressed objects within 12 object streams
+ 811 named destinations out of 1000 (max. 500000)
+ 102 words of extra memory for PDF output out of 10000 (max. 10000000)
 

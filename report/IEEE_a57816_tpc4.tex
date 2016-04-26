@@ -226,7 +226,7 @@ Todos os métodos de redução de tempos de acesso, ou seja, todos os métodos q
          \#Memory Channels & 4 \\ \hline
         Memória Ram Disponível & 64GB \\ \hline
      Peak Memory BW Fab. CPU  & 59.7 GB/s \\ \hline
-     \textbf{Local FileSystems} & ufs \\ \hline
+     \textbf{Local FileSystems} & zfs, ufs \\ \hline
     \textbf{ NFS FileSystems} & nfs,
 smb, 
 autofs, 
@@ -825,7 +825,7 @@ Ora, a execução do script dtrace de escrita e re-rescrita, e da ferramenta ioz
 
 
 iozone test complete.
-#opp  Total T. elapsed     No fdsynk T. elapsed   WR KB   RD KB       #fdsync  #lseek
+#opp  Total T. elapsed     No fdsync T. elapsed   WR KB   RD KB       #fdsync  #lseek
 1         4721288                 2275330        1050982       80         1    0
 2         4789564                 2059135        1050956       80         1    0
 
@@ -838,7 +838,7 @@ iozone test complete.
 Dedique especial atenção ao final do ficheiro de output:
 
 \begin{lstlisting}[style=command]
-#opp Total T. elapsed  No fdsynk T. elapsed WR KB    RD KB #fdsync  #lseek
+#opp Total T. elapsed  No fdsync T. elapsed WR KB    RD KB #fdsync  #lseek
 1         4721288                 2275330        1050982      80    1    0
 2         4789564                 2059135        1050956      80    1    0
 \end{lstlisting}
@@ -862,19 +862,364 @@ Ora, a execução do script dtrace de escrita e re-rescrita, e da ferramenta ioz
  resultou no seguinte output:
 
 \begin{lstlisting}[style=output]
-  
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.434 $
+		Compiled for 64 bit mode.
+		Build: Solaris10 
 
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer,
+	             Vangel Bojaxhi, Ben England, Vikentsi Lapa,
+	             Alexey Skidanov.
+
+	Run began: Tue Apr 26 05:56:06 2016
+
+	CPU utilization Resolution = 0.000 seconds.
+	CPU utilization Excel chart enabled
+	File size set to 1048576 kB
+	Command line used: /opt/csw/bin/iozone -+u -i 0 -i 1 -S 20480 -s 1g -l 1 -u 1
+	Output is in kBytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 20480 kBytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+	Min process = 1 
+	Max process = 1 
+	Throughput test with 1 process
+	Each process writes a 1048576 kByte file in 4 kByte records
+
+	Children see throughput for  1 initial writers 	=  378709.97 kB/sec
+	Parent sees throughput for  1 initial writers 	=  175685.84 kB/sec
+	Min throughput per process 			=  378709.97 kB/sec 
+	Max throughput per process 			=  378709.97 kB/sec
+	Avg throughput per process 			=  378709.97 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU Utilization: Wall time    2.769    CPU time    2.769    CPU utilization 100.00 %
+
+
+	Children see throughput for  1 rewriters 	=  387702.94 kB/sec
+	Parent sees throughput for  1 rewriters 	=  190278.17 kB/sec
+	Min throughput per process 			=  387702.94 kB/sec 
+	Max throughput per process 			=  387702.94 kB/sec
+	Avg throughput per process 			=  387702.94 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU utilization: Wall time    2.705    CPU time    2.705    CPU utilization 100.00 %
+
+
+	Children see throughput for  1 readers 		= 1027197.94 kB/sec
+	Parent sees throughput for  1 readers 		= 1024951.81 kB/sec
+	Min throughput per process 			= 1027197.94 kB/sec 
+	Max throughput per process 			= 1027197.94 kB/sec
+	Avg throughput per process 			= 1027197.94 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU utilization: Wall time    1.021    CPU time    1.021    CPU utilization 100.00 %
+
+
+	Children see throughput for 1 re-readers 	=  763717.62 kB/sec
+	Parent sees throughput for 1 re-readers 	=  762507.54 kB/sec
+	Min throughput per process 			=  763717.62 kB/sec 
+	Max throughput per process 			=  763717.62 kB/sec
+	Avg throughput per process 			=  763717.62 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU utilization: Wall time    1.373    CPU time    1.373    CPU utilization 100.00 %
+
+
+
+
+iozone test complete.
+#opp 	    Total T. elapsed	No fdsynk T. elapsed	      T. Wr. KB	      T. Rd. KB	   #fdsync	    #lseek
+3    	              996517	              994517	              0	        1048600	         1	         0
+4    	              838613	              838581	              0	        1048592	         1	         0
+2    	             4945363	             2141110	        1050854	             72	         1	         0
+1    	             5399966	             2202638	        1050964	             88	         1	         0
+
+
+ Lseek offset analysis:
 \end{lstlisting}
 
 Dedique especial atenção ao final do ficheiro de output:
 
+
 \begin{lstlisting}[style=command]
-#opp Total T. elapsed  No fdsynk T. elapsed WR KB    RD KB #fdsync  #lseek
-1         4721288                 2275330        1050982      80    1    0
-2         4789564                 2059135        1050956      80    1    0
+#opp Total T. elapsed  No fdsync T. elapsed WR KB    RD KB #fdsync  #lseek
+3    	  996517	              994517	0  	          1048600          1      0
+4    	  838613	              838581	0  	          1048592          1      0
+2    	  4945363	              2141110	1050854  	        72         1      0
+1    	  5399966	              2202638	1050964  	        88         1      0
+\end{lstlisting}
+
+Denote que para os casos específicos de leitura e re-leitura, a diferença entre tempos com ou sem a inclusão no cálculo da syscall \textbf{fdsync} não tão significância. Uma vez mais acreditamos que estes valores provam a não inclusão da syscall   \textbf{fdsync} no cálculo dos tempos totais.\par
+
+
+\subsubsection{Operações de Escrita e Leitura com  inclusão de posições aleatórias no ficheiro  }
+
+
+Verifiquemos a qualidade da medição da ferramenta para operações de leitura e escrita, agora com a inclusão de aleatoriedade na posição de leitura/escrita do ficheiro. Nestes casos, não nos interessa apenas que o tempo total medido via benchmarking activo seja aproximado da medição passiva, mas também verificar que existe uma distribuição ponderada por todo o ficheiro no acesso aleatório.\par 
+Atente no ficheiro de output resultante:
+
+\begin{lstlisting}[style=output]
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.434 $
+		Compiled for 64 bit mode.
+		Build: Solaris10 
+
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer,
+	             Vangel Bojaxhi, Ben England, Vikentsi Lapa,
+	             Alexey Skidanov.
+
+	Run began: Tue Apr 26 06:18:01 2016
+
+	CPU utilization Resolution = 0.000 seconds.
+	CPU utilization Excel chart enabled
+	File size set to 1048576 kB
+	Command line used: /opt/csw/bin/iozone -+u -i 0 -i 2 -S 20480 -s 1g -l 1 -u 1
+	Output is in kBytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 20480 kBytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+	Min process = 1 
+	Max process = 1 
+	Throughput test with 1 process
+	Each process writes a 1048576 kByte file in 4 kByte records
+
+	Children see throughput for  1 initial writers 	=  384791.19 kB/sec
+	Parent sees throughput for  1 initial writers 	=  178575.15 kB/sec
+	Min throughput per process 			=  384791.19 kB/sec 
+	Max throughput per process 			=  384791.19 kB/sec
+	Avg throughput per process 			=  384791.19 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU Utilization: Wall time    2.725    CPU time    2.725    CPU utilization  99.99 %
+
+
+	Children see throughput for  1 rewriters 	=  381352.62 kB/sec
+	Parent sees throughput for  1 rewriters 	=  198996.56 kB/sec
+	Min throughput per process 			=  381352.62 kB/sec 
+	Max throughput per process 			=  381352.62 kB/sec
+	Avg throughput per process 			=  381352.62 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU utilization: Wall time    2.750    CPU time    2.750    CPU utilization 100.00 %
+
+
+	Children see throughput for 1 random readers 	=  483253.06 kB/sec
+	Parent sees throughput for 1 random readers 	=  482545.45 kB/sec
+	Min throughput per process 			=  483253.06 kB/sec 
+	Max throughput per process 			=  483253.06 kB/sec
+	Avg throughput per process 			=  483253.06 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU utilization: Wall time    2.170    CPU time    2.170    CPU utilization 100.00 %
+
+
+	Children see throughput for 1 random writers 	=  293867.94 kB/sec
+	Parent sees throughput for 1 random writers 	=  127562.14 kB/sec
+	Min throughput per process 			=  293867.94 kB/sec 
+	Max throughput per process 			=  293867.94 kB/sec
+	Avg throughput per process 			=  293867.94 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU utilization: Wall time    3.568    CPU time    3.568    CPU utilization 100.00 %
+
+
+
+
+iozone test complete.
+#opp 	    Total T. elapsed	No fdsynk T. elapsed	      T. Wr. KB	      T. Rd. KB	   #fdsync	    #lseek
+3    	             1111365	             1111333	              0	        1048600	         1	    262144
+2    	             4697017	             2179381	        1050956	             80	         1	         0
+1    	             5285556	             2141299	        1051653	             88	         1	         0
+4    	             7105555	             2457011	        1051410	            120	         1	    262144
+
+
+ Lseek offset analysis:
+
+
+
+
+
+
+        3
+           value  ------------- Distribution ------------- count    
+              -1 |                                         0        
+               0 |                                         1        
+               1 |                                         0        
+               2 |                                         0        
+               4 |                                         0        
+               8 |                                         0        
+              16 |                                         0        
+              32 |                                         0        
+              64 |                                         0        
+             128 |                                         0        
+             256 |                                         0        
+             512 |                                         0        
+            1024 |                                         0        
+            2048 |                                         0        
+            4096 |                                         1        
+            8192 |                                         2        
+           16384 |                                         4        
+           32768 |                                         8        
+           65536 |                                         16       
+          131072 |                                         32       
+          262144 |                                         64       
+          524288 |                                         128      
+         1048576 |                                         256      
+         2097152 |                                         512      
+         4194304 |                                         1024     
+         8388608 |                                         2048     
+        16777216 |@                                        4096     
+        33554432 |@                                        8192     
+        67108864 |@@@                                      16384    
+       134217728 |@@@@@                                    32768    
+       268435456 |@@@@@@@@@@                               65536    
+       536870912 |@@@@@@@@@@@@@@@@@@@@                     131072   
+      1073741824 |                                         0        
+
+        4
+           value  ------------- Distribution ------------- count    
+              -1 |                                         0        
+               0 |                                         1        
+               1 |                                         0        
+               2 |                                         0        
+               4 |                                         0        
+               8 |                                         0        
+              16 |                                         0        
+              32 |                                         0        
+              64 |                                         0        
+             128 |                                         0        
+             256 |                                         0        
+             512 |                                         0        
+            1024 |                                         0        
+            2048 |                                         0        
+            4096 |                                         1        
+            8192 |                                         2        
+           16384 |                                         4        
+           32768 |                                         8        
+           65536 |                                         16       
+          131072 |                                         32       
+          262144 |                                         64       
+          524288 |                                         128      
+         1048576 |                                         256      
+         2097152 |                                         512      
+         4194304 |                                         1024     
+         8388608 |                                         2048     
+        16777216 |@                                        4096     
+        33554432 |@                                        8192     
+        67108864 |@@@                                      16384    
+       134217728 |@@@@@                                    32768    
+       268435456 |@@@@@@@@@@                               65536    
+       536870912 |@@@@@@@@@@@@@@@@@@@@                     131072   
+      1073741824 |                                         0        
+\end{lstlisting}
+
+Dedique especial atenção ao final do ficheiro de output:
+
+
+\begin{lstlisting}[style=command]
+#opp Total T. elapsed  No fdsync T. elapsed WR KB    RD KB #fdsync  #lseek
+3    	  1111365	     1111333	0  	          1048600       1      262144
+2    	  4697017	      2179381	1050956  	        80         1      0
+1    	  5285556	      2141299	1051653  	        88         1      0
+4    	  7105555	     2457011	1051410  	    1048592        1      262144
+
+\end{lstlisting}
+
+Tal como se verificou para  os casos específicos de leitura e re-leitura, a diferença entre tempos com ou sem a inclusão no cáculo da syscall \textbf{fdsync} não tem a significância que possui para os casos de escrita e re-escrita. 
+Um aspecto interessante a observar prende-se com a distribuição da posição de leitura/escrita aleatória. Como podemos constatar pelo output do programa a leitura e escrita aleatórias apresentam o mesmo número de chamdas da syscall \textbf{lseek}. Podemos ainda verificar que a distrubuição está normalizada, uma que quanto maior é o intervalo de offset à posição inicial do ficheiro, maior é o numero de chamadas da syscall \textbf{lseek}, dado o tamanho do intervalo aumentar na mesma proporção.\par
+Resta-nos analisar se o comportamento analisado nesta seção (e consequentemente filesystem ZFS) se verifica para os outros filesystems que temos disponíveis no sistema de computação.\par 
+
+
+\subsection{Take 5 -- uma análise com dtrace aos filesystems NFS e UFS}
+\subsubsection{filesystem NFS}
+Até ao momento apenas trabalhamos com o filesystem ZFS (dado estarmos a trabalhar na home). Ora, será interessante analisar o comportamento da mesma benchmark para filesystems distintos.
+Analisemos portanto o comportamento da ferramenta iozone no filesystem NFS com as seguintes opções:
+
+\begin{lstlisting}[style=command]
+/opt/csw/bin/iozone -+u -i 0 -S 20480 -s 1g -l 1 -u 1 -F /share/jade/a57816/iozone.DUMMY.0
 \end{lstlisting}
 
 
+\begin{lstlisting}[style=output]
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.434 $
+		Compiled for 64 bit mode.
+		Build: Solaris10 
+
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer,
+	             Vangel Bojaxhi, Ben England, Vikentsi Lapa,
+	             Alexey Skidanov.
+
+	Run began: Tue Apr 26 06:53:15 2016
+
+	CPU utilization Resolution = 0.000 seconds.
+	CPU utilization Excel chart enabled
+	File size set to 1048576 kB
+	Command line used: /opt/csw/bin/iozone -+u -i 0 -S 20480 -s 1g -l 1 -u 1 -F /share/jade/a57816/iozone.DUMMY.0
+	Output is in kBytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 20480 kBytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+	Min process = 1 
+	Max process = 1 
+	Throughput test with 1 process
+	Each process writes a 1048576 kByte file in 4 kByte records
+
+	Children see throughput for  1 initial writers 	=  113067.48 kB/sec
+	Parent sees throughput for  1 initial writers 	=   97872.50 kB/sec
+	Min throughput per process 			=  113067.48 kB/sec 
+	Max throughput per process 			=  113067.48 kB/sec
+	Avg throughput per process 			=  113067.48 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU Utilization: Wall time    9.274    CPU time    3.210    CPU utilization  34.61 %
+
+
+	Children see throughput for  1 rewriters 	=  113052.21 kB/sec
+	Parent sees throughput for  1 rewriters 	=   96989.31 kB/sec
+	Min throughput per process 			=  113052.21 kB/sec 
+	Max throughput per process 			=  113052.21 kB/sec
+	Avg throughput per process 			=  113052.21 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU utilization: Wall time    9.275    CPU time    3.114    CPU utilization  33.58 %
+
+
+
+
+iozone test complete.
+#opp 	    Total T. elapsed	No fdsynk T. elapsed	      T. Wr. KB	      T. Rd. KB	   #fdsync	    #lseek
+2    	             9917653	            84572075	        1056978	             32	         0	         0
+1    	            10835306	            94914415	        1056978	             40	         0	         0
+
+
+
+ Lseek offset analysis:
+\end{lstlisting}
+
+Dedique especial atenção ao final do ficheiro de output:
+
+
+\begin{lstlisting}[style=command,basicstyle=\scriptsize]
+#opp 	    Total T. elapsed	No fdsynk T. elapsed	      T. Wr. KB	      T. Rd. KB	   #fdsync	    #lseek
+2    	             9917653	            84572075	        1056978	             32	         0	         0
+1    	            10835306	            94914415	        1056978	             40	         0	         0
+\end{lstlisting}
+
+
+Ora, para o caso do filesystem UFS podemos considerar a precisão da ferramenta vs ZFS é superior. Tal será certamente devido à complexidade acrescida e otimização presentes no filesystem ZFS. Realizemos o mesmo teste agora para o filesystem UFS. Denote que, este último filesystem lida com uma tecnologia de armazenamento física diferente das até agora utilizadas. Iremos realizar o teste para o path 
 
 
 \newpage
