@@ -2,6 +2,11 @@
 
 #pragma D option quiet
 
+dtrace:::BEGIN{
+  opp_num = 1;
+
+}
+
 syscall::open*:entry{
   self->pathname = copyinstr(arg1);
 }
@@ -9,16 +14,30 @@ syscall::open*:entry{
 syscall::open*:return
 /strstr(self->pathname,"iozone.DUMMY.0") != NULL /
 {
-  self->start_total = timestamp; 
-  total_size = 0;
-  total_time = 0;
   flag = 1;
 }
+
+syscall::read*:entry
+/flag == 1/
+{
+  self->time_in = timestamp;
+  @total_r_size[opp_num] =  sum (arg2/1024);
+}
+
+syscall::read*:return
+/flag == 1/
+{
+  self->time_out = timestamp;
+  self->total_time = self->time_out - self->time_in;
+  @total_time[opp_num] = sum  (self->total_time);
+}
+
 
 syscall::write*:entry
 /flag == 1/
 {
   self->time_in = timestamp;
+  @total_w_size[opp_num] =  sum  (arg2/1024);
 }
 
 syscall::write*:return
@@ -26,18 +45,18 @@ syscall::write*:return
 {
   self->time_out = timestamp;
   self->total_time = self->time_out - self->time_in;
-  total_time = total_time + self->total_time;
+  @total_time[opp_num] =  sum (self->total_time);
 }
 
 syscall::close*:entry
-/total_time > 0 && self->start_total /
+/flag == 1/
 {
-  self->stop_total = timestamp; 
-  printf("\n\n###############################################\n");
-  printf("t time: %d\n", self->stop_total - self->start_total );
-  printf("w time: %d", total_time);
-  printf("###############################################\n\n");
   flag = 0;
-  total_time = 0;
+  opp_num = opp_num + 1;
+}
+
+dtrace:::END{
+  printf("%-10s %-10s %-10s %-10s\n","#opp", "Time elapsed", "T. Wr. KB", "T. Rd. KB");
+  printa("%-10d %-10@d %-10@d %-10@d \n", @total_time , @total_w_size, @total_r_size );
 }
 
