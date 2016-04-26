@@ -1,0 +1,86 @@
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.434 $
+		Compiled for 64 bit mode.
+		Build: Solaris10 
+
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer,
+	             Vangel Bojaxhi, Ben England, Vikentsi Lapa,
+	             Alexey Skidanov.
+
+	Run began: Tue Apr 26 05:56:06 2016
+
+	CPU utilization Resolution = 0.000 seconds.
+	CPU utilization Excel chart enabled
+	File size set to 1048576 kB
+	Command line used: /opt/csw/bin/iozone -+u -i 0 -i 1 -S 20480 -s 1g -l 1 -u 1
+	Output is in kBytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 20480 kBytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+	Min process = 1 
+	Max process = 1 
+	Throughput test with 1 process
+	Each process writes a 1048576 kByte file in 4 kByte records
+
+	Children see throughput for  1 initial writers 	=  378709.97 kB/sec
+	Parent sees throughput for  1 initial writers 	=  175685.84 kB/sec
+	Min throughput per process 			=  378709.97 kB/sec 
+	Max throughput per process 			=  378709.97 kB/sec
+	Avg throughput per process 			=  378709.97 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU Utilization: Wall time    2.769    CPU time    2.769    CPU utilization 100.00 %
+
+
+	Children see throughput for  1 rewriters 	=  387702.94 kB/sec
+	Parent sees throughput for  1 rewriters 	=  190278.17 kB/sec
+	Min throughput per process 			=  387702.94 kB/sec 
+	Max throughput per process 			=  387702.94 kB/sec
+	Avg throughput per process 			=  387702.94 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU utilization: Wall time    2.705    CPU time    2.705    CPU utilization 100.00 %
+
+
+	Children see throughput for  1 readers 		= 1027197.94 kB/sec
+	Parent sees throughput for  1 readers 		= 1024951.81 kB/sec
+	Min throughput per process 			= 1027197.94 kB/sec 
+	Max throughput per process 			= 1027197.94 kB/sec
+	Avg throughput per process 			= 1027197.94 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU utilization: Wall time    1.021    CPU time    1.021    CPU utilization 100.00 %
+
+
+	Children see throughput for 1 re-readers 	=  763717.62 kB/sec
+	Parent sees throughput for 1 re-readers 	=  762507.54 kB/sec
+	Min throughput per process 			=  763717.62 kB/sec 
+	Max throughput per process 			=  763717.62 kB/sec
+	Avg throughput per process 			=  763717.62 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU utilization: Wall time    1.373    CPU time    1.373    CPU utilization 100.00 %
+
+
+
+
+iozone test complete.
+#opp 	    Total T. elapsed	No fdsynk T. elapsed	      T. Wr. KB	      T. Rd. KB	   #fdsync	    #lseek
+5    	                   0	                   0	              0	              0	         0	         0
+3    	              996517	              994517	              0	        1048600	         1	         0
+4    	              838613	              838581	              0	        1048592	         1	         0
+2    	             4945363	             2141110	        1050854	             72	         1	         0
+1    	             5399966	             2202638	        1050964	             88	         1	         0
+
+
+ Lseek offset analysis:
+
+
+
+
+
+
+
