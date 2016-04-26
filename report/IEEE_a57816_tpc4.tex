@@ -1219,7 +1219,90 @@ Dedique especial atenção ao final do ficheiro de output:
 \end{lstlisting}
 
 
-Ora, para o caso do filesystem UFS podemos considerar a precisão da ferramenta vs ZFS é superior. Tal será certamente devido à complexidade acrescida e otimização presentes no filesystem ZFS. Realizemos o mesmo teste agora para o filesystem UFS. Denote que, este último filesystem lida com uma tecnologia de armazenamento física diferente das até agora utilizadas. Iremos realizar o teste para o path 
+Ora, para o caso do filesystem UFS podemos considerar a precisão da ferramenta vs ZFS é superior. Tal será certamente devido à complexidade acrescida e otimização presentes no filesystem ZFS. 
+
+
+\subsubsection{filesystem UFS}
+Realizemos o mesmo teste agora para o filesystem UFS. Denote que, este último filesystem lida com uma tecnologia de armazenamento física diferente das até agora utilizadas. Iremos realizar o teste para o path /diskHitachi/a57816/, montado num disco HDD.\par 
+Analisemos portanto o comportamento da ferramenta iozone no filesystem UFS com as seguintes opções:
+
+\begin{lstlisting}[style=command]
+/opt/csw/bin/iozone -+u -i 0 -S 20480 -s 1g -l 1 -u 1 -F /diskHitachi/a57816/iozone.DUMMY.0
+\end{lstlisting}
+
+
+\begin{lstlisting}[style=output]
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.434 $
+		Compiled for 64 bit mode.
+		Build: Solaris10 
+
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer,
+	             Vangel Bojaxhi, Ben England, Vikentsi Lapa,
+	             Alexey Skidanov.
+
+	Run began: Tue Apr 26 07:01:27 2016
+
+	CPU utilization Resolution = 0.000 seconds.
+	CPU utilization Excel chart enabled
+	File size set to 1048576 kB
+	Command line used: /opt/csw/bin/iozone -+u -i 0 -S 20480 -s 1g -l 1 -u 1 -F /diskHitachi/a57816/iozone.DUMMY.0
+	Output is in kBytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 20480 kBytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+	Min process = 1 
+	Max process = 1 
+	Throughput test with 1 process
+	Each process writes a 1048576 kByte file in 4 kByte records
+
+	Children see throughput for  1 initial writers 	=   69354.38 kB/sec
+	Parent sees throughput for  1 initial writers 	=   68516.99 kB/sec
+	Min throughput per process 			=   69354.38 kB/sec 
+	Max throughput per process 			=   69354.38 kB/sec
+	Avg throughput per process 			=   69354.38 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU Utilization: Wall time   15.119    CPU time    5.233    CPU utilization  34.61 %
+
+
+	Children see throughput for  1 rewriters 	=   73200.20 kB/sec
+	Parent sees throughput for  1 rewriters 	=   72431.44 kB/sec
+	Min throughput per process 			=   73200.20 kB/sec 
+	Max throughput per process 			=   73200.20 kB/sec
+	Avg throughput per process 			=   73200.20 kB/sec
+	Min xfer 					= 1048576.00 kB
+	CPU utilization: Wall time   14.325    CPU time    3.488    CPU utilization  24.35 %
+
+
+
+
+iozone test complete.
+#opp 	    Total T. elapsed	No fdsynk T. elapsed	      T. Wr. KB	      T. Rd. KB	   #fdsync	    #lseek
+2    	            15811178	            15575780	        1056649	            236	         1	         0
+1    	            14608933	            14426632	        1057084	            224	         1	         0
+
+
+ Lseek offset analysis:
+\end{lstlisting}
+
+Dedique especial atenção ao final do ficheiro de output:
+
+
+\begin{lstlisting}[style=command,basicstyle=\scriptsize]
+#opp 	    Total T. elapsed	No fdsynk T. elapsed	      T. Wr. KB	      T. Rd. KB	   #fdsync	    #lseek
+2    	            15811178	            15575780	        1056649	            236	         1	         0
+1    	            14608933	            14426632	        1057084	            224	         1	         0
+\end{lstlisting}
+
+Tal como se verificou para o sistema de ficheiros NFS, também a ferramenta iozone para o sistema de ficheiros UFS apresenta valores de benchmarking passivos muito próximos dos obtidos via benchmarking activa. Daqui concluímos que quanto mais otimizado e complexo o sistema de ficheiros, maior será a dificuldade em inferir testes de benchmarking que reflitam situações de interesse para o utilizador.\par 
+Apesar de não ser o propósito do trabalho prático, constatamos que a tecnologia SSD, tal como esperado, permite obter ordens de grandeza superiores no que toca a capacidade máxima de escrita/leitura.
 
 
 \newpage
