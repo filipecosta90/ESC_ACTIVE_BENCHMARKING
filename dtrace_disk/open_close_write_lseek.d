@@ -15,9 +15,9 @@ syscall::openat*:entry{
 syscall::openat*:return
 /self->file /
 {
-self->pathname = copyinstr(self->file);
-   flag = (strstr(self->pathname,"iozone.DUMMY.0") != NULL ) ?  1 : 0; 
-   self->time_out = timestamp;
+  self->pathname = copyinstr(self->file);
+  flag = (strstr(self->pathname,"iozone.DUMMY.0") != NULL ) ?  1 : 0; 
+  self->time_out = timestamp;
   self->total_t = (strstr(self->pathname,"iozone.DUMMY.0") != NULL ) ? ( self->time_out - self->time_in ) / 1000 : 0 ;
   @total_time[opp_num] = sum  (self->total_t);
   @nofdsync_time[opp_num] = sum (self->total_t);
@@ -34,7 +34,7 @@ syscall::read*:entry
 syscall::read*:return
 /flag == 1 &&  self->r_size/
 { 
-   self->time_out = timestamp;
+  self->time_out = timestamp;
   self->total_t = ( self->time_out - self->time_in ) / 1000;
   @total_time[opp_num] = sum  (self->total_t);
   @nofdsync_time[opp_num] = sum (self->total_t);
@@ -112,8 +112,8 @@ syscall::close*:return
 }
 
 dtrace:::END{
-  printf("%-10s %30s %30s %20s %20s %20s %20s\n","#opp", "Total T. elapsed", "No fdsynk T. elapsed", "T. Wr. KB", "T. Rd. KB", "#fdsync", "#lseek");
-  printa("%-10d %@30d %@30d %@20d %@20d %@20d %@20d\n"       , @total_time       , @nofdsync_time      , @total_w_size, @total_r_size, @total_fdsync, @lseek_count );
+  printf("%-5s\t%20s\t%20s\t%15s\t%15s\t%10s\t%10s\n","#opp", "Total T. elapsed", "No fdsynk T. elapsed", "T. Wr. KB", "T. Rd. KB", "#fdsync", "#lseek");
+  printa("%-5d\t%@20d\t%@20d\t%@15d\t%@15d\t%@10d\t%@10d\n"       , @total_time       , @nofdsync_time      , @total_w_size, @total_r_size, @total_fdsync, @lseek_count );
   printf("\n\n Lseek offset analysis:\n\n\n\n\n\n");
   printa( @lseek_offset );
 

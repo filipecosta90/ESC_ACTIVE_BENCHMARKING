@@ -85,6 +85,30 @@ numbers=right,
   extendedchars=true,
 }
 
+\lstdefinestyle{output}{
+language=c,
+	keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
+	identifierstyle=\ttfamily,
+	commentstyle=\color[rgb]{0.133,0.545,0.133},
+	stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+	showstringspaces=false,
+	basicstyle=\scriptsize,
+numberstyle=\small,
+numbers=right,
+	stepnumber=1,
+	numbersep=10pt,
+	tabsize=1,
+	breaklines=true,
+	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	breakatwhitespace=false,
+	%aboveskip={1.5\baselineskip},
+  columns=fixed,
+  upquote=true,
+  extendedchars=true,
+}
+
+
+
 \lstset{
 	language=c,
 	keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
@@ -374,7 +398,9 @@ Corramos novamente a ferramenta analisando agora o input/output recorrendo à fe
 \label{fig:iostat}
 \end{figure}
 
-Tal como suspeitávamos existe alguma imprecisão nos valores apresentados pela ferramenta \textbf{iozone} vs os apresentados pela ferramente \textbf{iostat}. Como era previsível o peak throughput aconteceu na acção de rewrite (521451 KBytes/sec), através da medição da ferramenta \textbf{iostat}. Tal não se revelou verdade novamente nos valores apresentados pela ferramenta \textbf{iozone}. 
+Tal como suspeitávamos existe alguma imprecisão nos valores apresentados pela ferramenta \textbf{iozone} vs os apresentados pela ferramenta \textbf{iostat}. Devemos sempre considerar esta análise com o iostat como algo introdutória à análise do problema -- não devemos descurar o facto de o o iostat apresentar valores globais do sistema (qualquer processo de outro utilizador poderá influenciar os resultados medidos). Bastaria outro utilizador efectuar alguma operação de escrita/leitura para invalidar os nossos resultados. Devemos então considerar este primeiro como uma avaliação "brusca". \par 
+ Como era previsível o peak throughput aconteceu na acção de rewrite (521451 KBytes/sec), através da medição da ferramenta \textbf{iostat}. Tal não se revelou verdade novamente nos valores apresentados pela ferramenta \textbf{iozone}.  \par 
+ Existem portanto outras ferramentas como dstat que irão aprofundar o nosso conhecimento sobre o "modus operandi do iozone".
 \par 
 Façamos uma análise mais profunda das systems calls que a ferramenta \textbf{iozone} realiza para o cálculo dos resultados.
 
@@ -408,9 +434,11 @@ Da análise do ficheiro truss\_report\_write.txt reparamos que o ficheiro de esc
 ...
 \end{lstlisting}
 
-Podemos retirar dois aspectos importantes do seguinte excerto, sendo estes o \textbf{método de medição -- via getrusage\footnote{\url{http://linux.die.net/man/2/getrusage}}},  e o textbf{nome do ficheiro -- iozone.DUMMY.0} , o seu respectivo \textbf{descritor de ficheiro  -- 5}  e \textbf{ tamanho de record utilizado - 4096 bytes }.\par 
-Podemos ainda analisar o momento do término da contagem do tempo para a operação de \texbf{initial write}. Um pouco para nosso espanto a medição do tempo é terminada antes da garantia de sincronização dos dados com disco (conferir linhas 10223827 e 10223828 do próximo excerto). Ou seja, este tipo de medição não será certamente o mais preciso uma vez que poderão ocorrer descrepâncias entre o tempo calculado pela ferramenta e o tempo real que a ferramenta demora a completar a operação de escrita e sincronização. \textbf{Encontramos a primeira imprecisão!}
-\label{imprecisao}
+Podemos retirar dois aspectos importantes do seguinte excerto, sendo estes o textbf{nome do ficheiro -- iozone.DUMMY.0} , o seu respectivo \textbf{descritor de ficheiro  -- 5}  e \textbf{ tamanho de record utilizado - 4096 bytes }.\par 
+Podemos ainda analisar o momento do término da operação de \texbf{initial write}. Antes de se proceder ao fecho do descritor de ficheiro é garantida a sincronização dos dados com disco (conferir linhas 10223828 e 10223829 do próximo excerto) através da syscall \textbf{fdsync}. \par 
+
+Reparamos ainda em outro detalhe de interesse. Apenas quando corremos a ferramenta iozone com a opção \textbf{-+u} é verifica a ocorrência da medição de valores de utilização de cpu via via \textbf{getrusage}\footnote{\url{http://linux.die.net/man/2/getrusage}}(conferir linha 10223827 do próximo excerto). Inicialmente pensávamos que esta syscall era utilizada para cálculo do tempo total da operação de escrita, contudo, correndo a ferramenta sem a opção   \textbf{-+u} tal syscall não é encontrada. 
+
 \begin{lstlisting}
 ...
 ...
@@ -430,7 +458,7 @@ Podemos ainda analisar o momento do término da contagem do tempo para a operaç
 ...
 \end{lstlisting}
 
-Continuando a análise do ficheiro truss\_report\_write.txt reparamos que o ficheiro de escrita do nosso interesse continua a ser o textbf{iozone.DUMMY.0}.
+Continuando a análise do ficheiro truss\_report\_write.txt reparamos que o ficheiro de escrita do nosso interesse continua a ser o \textbf{iozone.DUMMY.0}.
 
 
 \begin{lstlisting}
@@ -463,7 +491,7 @@ Continuando a análise do ficheiro truss\_report\_write.txt reparamos que o fich
 \newpage
 \subsection{Take 3 -- uma análise com dtrace}
 
-Deste padrão de open() , write(), e read() podemos criar um ficheiro dtrace que calcule o tempo entre as syscalls open() e close() com o descritor de ficheiro = 5, e calcular o total de bytes escrito pelas syscalls write() entre open() e close().
+Deste padrão de open() , write(), e read() podemos criar um primeiro ficheiro dtrace que calcule o tempo entre as syscalls open() e close() com o descritor de ficheiro = 5, e calcular o total de bytes escrito pelas syscalls write() entre open() e close(). Por recorrermos ao provider \textbf{fsinfo} estamos ainda a analisar todo o sistema. Considere portanto este script D-Trace como um introdutório para a validação dos pressupostos até ao momento assumidos, e da precisão dos tempos de medição. Em seções futuras do relatório analisaremos outras formas de calcular tanto os tempos como os valores de escrita e leitura em disco.
 
 \begin{lstlisting}
 #!/usr/sbin/dtrace -s
@@ -594,24 +622,274 @@ iozone test complete.
 Para o caso de initial write o script dtrace calculou 132303544264 nano-segundos como o tempo necessário à escrita -- equivalente a 132.30 segundos. Encontramos já neste valor uma pequena descrepância versus os 125.165 segundos de Wall time apresentados pela ferramenta iozone. Analisemos o throughput médio calculado: 40894464 KB / 132.30 seg = 309104.036 KB/sec, também este diferente dos 326724.00 KB/sec calculados pela ferramenta iozone. \par 
 Procedendo de igual forma para re-write temos como tempo calculado pelo script dtrace 127477939460 nano-segundos como o tempo necessário à re-escrita -- equivalente a 127.477 segundos.  
 Encontramos novamente  uma pequena descrepância versus os 120.731 segundos de Wall time apresentados pela ferramenta iozone. Analisemos o throughput médio calculado: 40894464 KB / 127.477 seg = 320798.763 KB/sec , também este diferente dos 338724.72 KB/sec calculados pela ferramenta iozone. \par
-De um modo constante a ferramenta iozone foi mais "otimista" nos valores medidos, e acreditamos que a \textbf{diferença de valores obtidos se prende com a imprecisão que detectamos anteriormente na secção \ref{imprecisao}}.
+De um modo constante a ferramenta iozone foi mais "otimista" nos valores medidos, e acreditamos que a \textbf{diferença de valores obtidos se prende com a necessidade de aumentar a granularidade dos testes}.
 \newpage
-\section{Trabalho Futuro}
+
+\subsection{Take 4 -- uma análise com dtrace via provider syscall}
+\subsubsection{Operações de Escrita}
+À anterior análise das syscalls open(), close(), write(), e read(), foram adicionadas acções de análise às probes que analisam as syscalls lseek e fdsync. Denote que tal com enunciado anteriormente era necessária aumentar a precisão e certeza dos testes. Para isso foi utilizado o provider \textbf{syscall} em detrimento do provider \textbf{fsinfo}.  Desta forma, estaremos preparados para analisar os testes de read, re-read, write, re-write, random-read, e random-write. 
+
+\begin{lstlisting}
+#!/usr/sbin/dtrace -s
+
+#pragma D option quiet
+
+dtrace:::BEGIN{
+  opp_num = 1;
+
+}
+
+syscall::openat*:entry{
+  self->time_in = timestamp;
+  self->file = arg1;
+}
+
+syscall::openat*:return
+/self->file /
+{
+self->pathname = copyinstr(self->file);
+   flag = (strstr(self->pathname,"iozone.DUMMY.0") != NULL ) ?  1 : 0; 
+   self->time_out = timestamp;
+  self->total_t = (strstr(self->pathname,"iozone.DUMMY.0") != NULL ) ? ( self->time_out - self->time_in ) / 1000 : 0 ;
+  @total_time[opp_num] = sum  (self->total_t);
+  @nofdsync_time[opp_num] = sum (self->total_t);
+}
+
+syscall::read*:entry
+/flag == 1/
+{
+  self->time_in = timestamp;
+  self->r_size = arg2/1024;
+  @total_r_size[opp_num] =  sum (self->r_size);
+}
+
+syscall::read*:return
+/flag == 1 &&  self->r_size/
+{ 
+   self->time_out = timestamp;
+  self->total_t = ( self->time_out - self->time_in ) / 1000;
+  @total_time[opp_num] = sum  (self->total_t);
+  @nofdsync_time[opp_num] = sum (self->total_t);
+  self->r_size = 0;
+}
+
+syscall::fdsync*:entry
+/flag == 1/
+{
+  self->time_in = timestamp;
+  @total_fdsync[opp_num] =  count();
+}
+
+syscall::fdsync*:return
+/flag == 1 /
+{
+  self->time_out = timestamp;
+  self->total_t = ( self->time_out - self->time_in )/ 1000;
+  @total_time[opp_num] = sum  (self->total_t);
+
+}
+
+
+syscall::write*:entry
+/flag == 1/
+{
+  self->time_in = timestamp;
+  self->w_size = arg2 / 1024;
+  @total_w_size[opp_num] =  sum (self->w_size);
+}
+
+syscall::write*:return
+/flag == 1 && self->w_size/
+{
+  self->time_out = timestamp;
+  self->total_t = ( self->time_out - self->time_in )/ 1000;
+  @total_time[opp_num] = sum  (self->total_t);
+  @nofdsync_time[opp_num] = sum (self->total_t);
+  self->w_size = 0;
+}
+
+syscall::lseek*:entry
+/flag == 1 /
+{
+  self->time_in = timestamp;
+  @lseek_offset[opp_num] = quantize (arg1);
+  @lseek_count[opp_num] = count();
+}
+
+syscall::lseek*:return
+/flag == 1 /
+{
+  self->time_out = timestamp;
+  self->total_t = ( self->time_out - self->time_in ) / 1000;
+  @total_time[opp_num] = sum  (self->total_t);
+  @nofdsync_time[opp_num] = sum (self->total_t);
+}
+
+syscall::close*:entry
+/flag == 1 /
+{
+  self->time_in = timestamp;
+}
+
+
+syscall::close*:return
+/flag == 1 /
+{
+  self->time_out = timestamp;
+  self->total_t = ( self->time_out - self->time_in ) / 1000;
+  @total_time[opp_num] = sum  (self->total_t);
+  @nofdsync_time[opp_num] = sum (self->total_t);
+  opp_num = opp_num + 1;
+  flag = 0;
+}
+
+dtrace:::END{
+  printf("%-5s\t%20s\t%20s\t%15s\t%15s\t%10s\t%10s\n","#opp", "Total T. elapsed", "No fdsynk T. elapsed", "T. Wr. KB", "T. Rd. KB", "#fdsync", "#lseek");
+  printa("%-5d\t%@20d\t%@20d\t%@15d\t%@15d\t%@10d\t%@10d\n"       , @total_time       , @nofdsync_time      , @total_w_size, @total_r_size, @total_fdsync, @lseek_count );
+  printf("\n\n Lseek offset analysis:\n\n\n\n\n\n");
+  printa( @lseek_offset );
+
+  clear ( @lseek_offset );
+  clear ( @total_time );
+  clear ( @nofdsync_time );
+  clear ( @total_w_size );
+  clear ( @total_r_size );
+  clear ( @total_fdsync );
+  clear ( @lseek_offset );
+
+}
+
+
+\end{lstlisting}
+
+Denote que foi adicionada à script D-Trace a funcionalidade de impressão da distribuição da posição(offset) do ficheiro de leitura/escrita via a syscall \textbf{lseek}. 
+
+Ora, a execução do script dtrace de escrita e re-rescrita, e da ferramenta iozone com as opções:
+
+\begin{lstlisting}[style=command]
+/opt/csw/bin/iozone -+u -i 0 -S 20480 -s 1g -l 1 -u 1
+\end{lstlisting}
+
+ resultou no seguinte output:
+
+\begin{lstlisting}[style=output]
+        Iozone: Performance Test of File I/O
+                Version $Revision: 3.434 $
+                Compiled for 64 bit mode.
+                Build: Solaris10 
+
+        Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+                     Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+                     Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+                     Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+                     Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+                     Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+                     Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer,
+                     Vangel Bojaxhi, Ben England, Vikentsi Lapa,
+                     Alexey Skidanov.
+
+        Run began: Tue Apr 26 05:14:08 2016
+
+        CPU utilization Resolution = 0.000 seconds.
+        CPU utilization Excel chart enabled
+        File size set to 1048576 kB
+        Command line used: /opt/csw/bin/iozone -+u -i 0 -S 20480 -s 1g -l 1 -u 1
+        Output is in kBytes/sec
+        Time Resolution = 0.000001 seconds.
+        Processor cache size set to 20480 kBytes.
+        Processor cache line size set to 32 bytes.
+        File stride size set to 17 * record size.
+        Min process = 1 
+        Max process = 1 
+        Throughput test with 1 process
+        Each process writes a 1048576 kByte file in 4 kByte records
+
+        Children see throughput for  1 initial writers  =  371087.25 kB/sec
+        Parent sees throughput for  1 initial writers   =  198815.72 kB/sec
+        Min throughput per process                      =  371087.25 kB/sec 
+        Max throughput per process                      =  371087.25 kB/sec
+        Avg throughput per process                      =  371087.25 kB/sec
+        Min xfer                                        = 1048576.00 kB
+        CPU Utilization: Wall time    2.826    CPU time    2.826    CPU utilization 100.00 %
+
+
+        Children see throughput for  1 rewriters        =  402761.41 kB/sec
+        Parent sees throughput for  1 rewriters         =  196457.28 kB/sec
+        Min throughput per process                      =  402761.41 kB/sec 
+        Max throughput per process                      =  402761.41 kB/sec
+        Avg throughput per process                      =  402761.41 kB/sec
+        Min xfer                                        = 1048576.00 kB
+        CPU utilization: Wall time    2.603    CPU time    2.603    CPU utilization 100.00 %
+
+
+
+
+iozone test complete.
+#opp  Total T. elapsed     No fdsynk T. elapsed   WR KB   RD KB       #fdsync  #lseek
+1         4721288                 2275330        1050982       80         1    0
+2         4789564                 2059135        1050956       80         1    0
+
+
+ Lseek offset analysis:
+
+
+\end{lstlisting}
+
+Dedique especial atenção ao final do ficheiro de output:
+
+\begin{lstlisting}[style=command]
+#opp Total T. elapsed  No fdsynk T. elapsed WR KB    RD KB #fdsync  #lseek
+1         4721288                 2275330        1050982      80    1    0
+2         4789564                 2059135        1050956      80    1    0
+\end{lstlisting}
+
+
+
+Reparamos que para ficheiros de grande tamanho o tempo demonstrado como o total pela ferramenta iozone parecia desmedido versus o tempo total que a mesma levava para terminar correctamente a execução. Ora, como se pode verificar pelo script e pelo resultado de execução anterior, a ferramenta não está a calcular como tempo de escrita o tempo que perde com a syscall \textbf{fdsync}. A mesma tem um valor de tempo total 2.826 segundos para a primeira operação e 2.603 segundos para a segunda, versus 2.2753 segundos (2275330 micro-segundos) para a primeira operação e 2.059 segundos (2059135 micro-segundos) para a segunda. Ora, se a ferramenta considera-se os valores do tempo na syscall \textbf{fsync} os valores seriam mais aproximados de 4.7212 segundos (4721288 micro-segundos) para a primeira operação e 4.7896 segundos (4789564 micro-segundos) para a segunda. \par 
+Um pouco para nosso espanto a medição do tempo é terminada antes da garantia de sincronização dos dados com disco. Ou seja, este tipo de medição não será certamente o mais preciso uma vez que poderão ocorrer descrepâncias entre o tempo calculado pela ferramenta e o tempo real que a ferramenta demora a completar a operação de escrita e sincronização. \textbf{Encontramos a primeira imprecisão!}\par 
+\label{imprecisao}
+Verifiquemos a qualidade da medição da ferramenta para operações de leitura.
+
+\subsubsection{Operações de Escrita}
+
+
+Ora, a execução do script dtrace de escrita e re-rescrita, e da ferramenta iozone com as opções:
+
+\begin{lstlisting}[style=command]
+/opt/csw/bin/iozone -+u -i 1 -S 20480 -s 1g -l 1 -u 1
+\end{lstlisting}
+
+ resultou no seguinte output:
+
+\begin{lstlisting}[style=output]
+  
+
+\end{lstlisting}
+
+Dedique especial atenção ao final do ficheiro de output:
+
+\begin{lstlisting}[style=command]
+#opp Total T. elapsed  No fdsynk T. elapsed WR KB    RD KB #fdsync  #lseek
+1         4721288                 2275330        1050982      80    1    0
+2         4789564                 2059135        1050956      80    1    0
+\end{lstlisting}
+
+
+
+
+\newpage
+\section{Conclusão e Trabalho Futuro}
 
 \epigraph{
 Running a benchmark is the easy part. Understanding a benchmark can take much longer.
 \vspace{3mm}\\ \url{http://www.brendangregg.com/ActiveBenchmarking/bonnie++.html}}\par 
 
 
-
-
 Tal como mencionado em trabalhos anteriores a ferramenta DTrace mostra-se bastante útil e única em termos de funcionalidades quando necessitamos de agregar informação de vários processos/threads,etc. Contudo, esta representa uma pequena porção de todo o trabalho de análise e tratamento de dados necessário para a validação de valores apresentados por ferramentas de benchmarking como o caso da iozone. Sem a análise anterior via \textbf{iostat} e \textbf{truss} seria impossível tirar qualquer tipo de conclusão.\par
-Ora, o trabalho futuro prende-se com o teste de outras funcionalidades da ferramenta iozone corroborando/desmentindo os valores nela anunciados.
+Ora, o trabalho futuro prender-se-ia com o teste de outras funcionalidades da ferramenta iozone corroborando/desmentindo os valores nela anunciados.
 Por vezes, durante o processo de compreensão da ferramenta iozone foi necessário analisar instrução-a-instrução resultante, com algumas descobertas interessantes.
 \par 
 Retratamos sobretudo a capacidade analisar funcionalidades disponibilizadas e a sua correta aplicação na resolução de problemas de computação tendo sempre em conta o mínimo de alteração possível na medição de perfomance do sistema analisado.
-
-
 
 \end{document}
 

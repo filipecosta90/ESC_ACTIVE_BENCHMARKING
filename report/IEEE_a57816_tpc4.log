@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.16)  19 APR 2016 03:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.16)  26 APR 2016 05:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -785,28 +785,28 @@ Package: titling 2009/09/04 v2.1d maketitle typesetting
 (./IEEE_a57816_tpc4.aux)
 \openout1 = `IEEE_a57816_tpc4.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 121.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 121.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 145.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 145.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 121.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 121.
-LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 145.
+LaTeX Font Info:    ... okay on input line 145.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -865,7 +865,7 @@ Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count168
 \AtBeginShipoutBox=\box78
-Package hyperref Info: Link coloring OFF on input line 121.
+Package hyperref Info: Link coloring OFF on input line 145.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -875,55 +875,55 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count169
 )
-LaTeX Info: Redefining \ref on input line 121.
-LaTeX Info: Redefining \pageref on input line 121.
-LaTeX Info: Redefining \nameref on input line 121.
+LaTeX Info: Redefining \ref on input line 145.
+LaTeX Info: Redefining \pageref on input line 145.
+LaTeX Info: Redefining \nameref on input line 145.
 
 (./IEEE_a57816_tpc4.out) (./IEEE_a57816_tpc4.out)
 \@outlinefile=\write3
 \openout3 = `IEEE_a57816_tpc4.out'.
 
 
-./IEEE_a57816_tpc4.tex:133: Too many }'s.
-l.133 }
+./IEEE_a57816_tpc4.tex:157: Too many }'s.
+l.157 }
        
 ? 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/ucs/data/uni-0.def
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 138.
+(Font)              <12> on input line 162.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 138.
+(Font)              <8> on input line 162.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 138.
+(Font)              <6> on input line 162.
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--178
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
 []\OT1/cmr/bx/n/10 Introdu^^Xc~ao -- Con-tex-tu-a-liza^^Xc~ao da Fer-ra-menta i
 o-zone
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--178
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
 
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 188.
+(Font)              <7> on input line 212.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 188.
+(Font)              <5> on input line 212.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 213.
+(babel)             in language  on input line 237.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 213.
+(babel)             in language  on input line 237.
 [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 216.
+(babel)             in language  on input line 240.
 
 
-./IEEE_a57816_tpc4.tex:225: Package inputenc Error: Keyboard character used is 
+./IEEE_a57816_tpc4.tex:249: Package inputenc Error: Keyboard character used is 
 undefined
 (inputenc)                in inputencoding `utf8x'.
 
@@ -931,67 +931,67 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.225 ^^B
+l.249 ^^B
          Teremos que ter ainda em conta na escolha do tamanho do dataset a m...
 
 ? 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 231.
+(Font)              <9> on input line 255.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 250.
+(babel)             in language  on input line 274.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 250.
+(babel)             in language  on input line 274.
 [2]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 266.
+(babel)             in language  on input line 290.
 
-Overfull \hbox (26.62607pt too wide) in paragraph at lines 270--271
+Overfull \hbox (26.62607pt too wide) in paragraph at lines 294--295
 \OT1/cmr/m/n/10 read/write 3=Read-backwards, 4=Re-write-record, 5=stride-read, 
 6=fwrite/re-fwrite, 7=fread/Re-
  []
 
-./IEEE_a57816_tpc4.tex:272: You can't use `macro parameter character #' in hori
+./IEEE_a57816_tpc4.tex:296: You can't use `macro parameter character #' in hori
 zontal mode.
-l.272 ...e file to test. One may also specify -s #
+l.296 ...e file to test. One may also specify -s #
                                                   k (size in Kbytes) or -s #...
 
 ? 
-./IEEE_a57816_tpc4.tex:272: You can't use `macro parameter character #' in hori
+./IEEE_a57816_tpc4.tex:296: You can't use `macro parameter character #' in hori
 zontal mode.
-l.272 ...so specify -s #k (size in Kbytes) or -s #
+l.296 ...so specify -s #k (size in Kbytes) or -s #
                                                   m (size in Mbytes) or -s #...
 
 ? 
-./IEEE_a57816_tpc4.tex:272: You can't use `macro parameter character #' in hori
+./IEEE_a57816_tpc4.tex:296: You can't use `macro parameter character #' in hori
 zontal mode.
-l.272 ...Kbytes) or -s #m (size in Mbytes) or -s #
+l.296 ...Kbytes) or -s #m (size in Mbytes) or -s #
                                                   g (size in Gbytes).
 ? 
 
-Overfull \hbox (25.53304pt too wide) in paragraph at lines 280--281
+Overfull \hbox (25.53304pt too wide) in paragraph at lines 304--305
 [] \OT1/cmr/bx/n/10 -b /ex-port/ho-me/a57816/ESC[]ACTIVE[]BENCHMARKING[]HOME/te
 ste[]write.xls
  []
 
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 293
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 317
 .
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 294.
+(babel)             in language  on input line 318.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 294.
+(babel)             in language  on input line 318.
  [3]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <9> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 294.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 318.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 353.
+(babel)             in language  on input line 377.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 353.
+(babel)             in language  on input line 377.
  [4]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 365.
+(babel)             in language  on input line 389.
 Package epstopdf Info: Source file: <EPS/iostat.eps>
 (epstopdf)                    date: 2016-04-19 00:41:16
 (epstopdf)                    size: 19068 bytes
@@ -1000,120 +1000,139 @@ Package epstopdf Info: Source file: <EPS/iostat.eps>
 (epstopdf)                    size: 12893 bytes
 (epstopdf)             Command: <repstopdf --outfile=EPS/iostat-eps-converted-t
 o.pdf EPS/iostat.eps>
-(epstopdf)             \includegraphics on input line 371.
+(epstopdf)             \includegraphics on input line 395.
 Package epstopdf Info: Output file is already uptodate.
 
-<EPS/iostat-eps-converted-to.pdf, id=135, 1027.84pt x 481.8pt>
+<EPS/iostat-eps-converted-to.pdf, id=139, 1027.84pt x 481.8pt>
 File: EPS/iostat-eps-converted-to.pdf Graphic file (type pdf)
 
 <use EPS/iostat-eps-converted-to.pdf>
-Package pdftex.def Info: EPS/iostat-eps-converted-to.pdf used on input line 371
+Package pdftex.def Info: EPS/iostat-eps-converted-to.pdf used on input line 395
 .
 (pdftex.def)             Requested size: 469.47307pt x 220.06477pt.
 
-Overfull \hbox (42.68173pt too wide) in paragraph at lines 371--373
+Overfull \hbox (42.68173pt too wide) in paragraph at lines 395--397
  [][] 
  []
 
-./IEEE_a57816_tpc4.tex:373: Undefined control sequence.
+./IEEE_a57816_tpc4.tex:397: Undefined control sequence.
 <argument> ...mance medida pela ferramenta \texbf 
                                                   {iostat} vs performance me...
-l.373 }
+l.397 }
        
 ? 
-./IEEE_a57816_tpc4.tex:373: Undefined control sequence.
+./IEEE_a57816_tpc4.tex:397: Undefined control sequence.
 <argument> ...mance medida pela ferramenta \texbf 
                                                   {iostat} vs performance me...
-l.373 }
+l.397 }
        
 ? 
-./IEEE_a57816_tpc4.tex:373: Undefined control sequence.
+./IEEE_a57816_tpc4.tex:397: Undefined control sequence.
 <argument> ...mance medida pela ferramenta \texbf 
                                                   {iostat} vs performance me...
-l.373 }
+l.397 }
        
 ? 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 381.
+(babel)             in language  on input line 403.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 385.
-Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 385.
+(babel)             in language  on input line 403.
 [5 <./EPS/iostat-eps-converted-to.pdf>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 393.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 407.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 419.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 393.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 419.
 
-./IEEE_a57816_tpc4.tex:412: Undefined control sequence.
-l.412 ...agem do tempo para a operação de \texbf
-                                                  {initial write}. Um pouco ...
+./IEEE_a57816_tpc4.tex:438: Undefined control sequence.
+l.438 ...mento do término da operação de \texbf
+                                                  {initial write}. Antes de ...
 
 ? 
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 429.
+(babel)             in language  on input line 451.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 429.
+(babel)             in language  on input line 451.
 [6]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 463.
+(babel)             in language  on input line 491.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 463.
+(babel)             in language  on input line 491.
  [7]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 464.
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 475.
+(babel)             in language  on input line 492.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 503.
 
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 475.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 503.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 529.
+(babel)             in language  on input line 555.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 529.
+(babel)             in language  on input line 555.
  [8]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 591.
+(babel)             in language  on input line 612.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 591.
+(babel)             in language  on input line 612.
 
 [9]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 598.
+(babel)             in language  on input line 626.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 598.
+(babel)             in language  on input line 626.
  [10]
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 599.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 616.
+(babel)             in language  on input line 628.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 616.
+(babel)             in language  on input line 690.
 Package babel Info: Redefining portuges shorthand "|
-(babel)             in language  on input line 616.
+(babel)             in language  on input line 690.
  [11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 616.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 749.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 749.
+ [12]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <7> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 778.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 833.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 833.
+ [13]
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 856.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 869.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 869.
+Package babel Info: Redefining portuges shorthand "|
+(babel)             in language  on input line 869.
+ [14]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 869.
  (./IEEE_a57816_tpc4.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 616.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 616.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 869.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 869.
 Package rerunfilecheck Info: File `IEEE_a57816_tpc4.out' has not changed.
-(rerunfilecheck)             Checksum: F19912342E8CA0A76B77359D782489ED;474.
+(rerunfilecheck)             Checksum: 8B26F5D507CEF77E147AF700087AD143;596.
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 177 ({)
+### simple group (level 1) entered at line 201 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 18119 strings out of 493089
- 306142 string characters out of 6134842
- 710887 words of memory out of 5000000
- 21112 multiletter control sequences out of 15000+600000
- 10758 words of font info for 38 fonts, out of 8000000 for 9000
+ 18402 strings out of 493089
+ 310264 string characters out of 6134842
+ 757267 words of memory out of 5000000
+ 21195 multiletter control sequences out of 15000+600000
+ 11533 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  45i,12n,49p,10405b,2038s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm
@@ -1121,23 +1140,26 @@ Here is how much of TeX's memory you used:
 cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmbx9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmi9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12
-.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.p
-fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></u
-sr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/
-local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/lo
-cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/
-texlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/te
-xlive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texliv
-e/2015/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
-Output written on IEEE_a57816_tpc4.pdf (11 pages, 254717 bytes).
+mmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10
+.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.p
+fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></
+usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr
+/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/lo
+cal/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/loca
+l/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/
+2015/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/20
+15/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb>
+Output written on IEEE_a57816_tpc4.pdf (14 pages, 307598 bytes).
 PDF statistics:
- 498 PDF objects out of 1000 (max. 8388607)
- 460 compressed objects within 5 object streams
- 287 named destinations out of 1000 (max. 500000)
- 54 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 763 PDF objects out of 1000 (max. 8388607)
+ 716 compressed objects within 8 object streams
+ 485 named destinations out of 1000 (max. 500000)
+ 62 words of extra memory for PDF output out of 10000 (max. 10000000)
 
