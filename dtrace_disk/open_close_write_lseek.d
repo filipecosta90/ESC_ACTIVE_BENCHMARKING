@@ -32,6 +32,21 @@ syscall::read*:return
   @total_time[opp_num] = sum  (self->total_time);
 }
 
+syscall::fdsync:entry
+/flag == 1/
+{
+  self->time_in = timestamp;
+  @total_fdsync[opp_num] =  count();
+}
+
+syscall::fdsync:return
+/flag == 1/
+{
+  self->time_out = timestamp;
+  self->total_time = self->time_out - self->time_in;
+  @total_time[opp_num] = sum  (self->total_time);
+}
+
 
 syscall::write*:entry
 /flag == 1/
@@ -48,6 +63,23 @@ syscall::write*:return
   @total_time[opp_num] =  sum (self->total_time);
 }
 
+syscall::lseek:entry
+/flag == 1/
+{
+  self->time_in = timestamp;
+  @lseek_offset[opp_num] = quantize (arg1);
+  @lseek_count[opp_num] = count();
+}
+
+syscall::lseek:return
+/flag == 1/
+{
+  self->time_out = timestamp;
+  self->total_time = self->time_out - self->time_in;
+  @total_time[opp_num] =  sum (self->total_time);
+}
+
+
 syscall::close*:entry
 /flag == 1/
 {
@@ -56,7 +88,9 @@ syscall::close*:entry
 }
 
 dtrace:::END{
-  printf("%-10s %-10s %-10s %-10s\n","#opp", "Time elapsed", "T. Wr. KB", "T. Rd. KB");
-  printa("%-10d %-10@d %-10@d %-10@d \n", @total_time , @total_w_size, @total_r_size );
+  printf("%-10s %10s %10s %10s %10s %10s\n","#opp", "Time elapsed", "T. Wr. KB", "T. Rd. KB", "#fdsync", "#lseek");
+  printa("%-10d %10@d %10@d %10@d %10@d\n", @total_time , @total_w_size, @total_r_size, @total_fdsync, @lseek_offset );
+  printf("\n\n Lseek offset analysis:\n");
+  printa(@lseek_offset);
 }
 
