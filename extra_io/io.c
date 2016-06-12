@@ -217,16 +217,17 @@ io(const char *path)
    */
   if (!qflag) {
     timespecsub(&ts_finish, &ts_start);
-
+    FILE * fp1;
+    fp1 = fopen ("IO_OUT.txt", "w+");
     if (vflag) {
-      printf("Benchmark configuration:\n");
-      printf("  blocksize: %ld\n", blocksize);
-      printf("  totalsize: %ld\n", totalsize);
-      printf("  blockcount: %ld\n", blockcount);
-      printf("  operation: %s\n", cflag ? "create" :
-          (wflag ? "write" : "read"));
-      printf("  path: %s\n", path);
-      printf("  time: %jd.%09jd\n",
+      //printf(fp,"\nBenchmark configuration: ");
+      //printf(fp,"  blocksize: %ld\n", blocksize);
+      //printf(fp,"  totalsize: %ld\n", totalsize);
+      //printf(fp,"  blockcount: %ld\n", blockcount);
+      //printf(fp,"  operation: %s\n", cflag ? "create" :
+      //    (wflag ? "write" : "read"));
+      //fprintf(fp,"  path: %s\n", path);
+      fprintf(fp1,"IO time: %jd.%09jd\n",
           (intmax_t)ts_finish.tv_sec,
           (intmax_t)ts_finish.tv_nsec);
     }
@@ -240,8 +241,8 @@ io(const char *path)
 
     /* Kilobytes/second. */
     rate /= (1024);
-
-    printf("%.2F KBytes/sec\n", rate);
+    fprintf(fp1, "IO rate: %.2F KBytes/sec\n", rate);
+    fclose(fp1);
   }
   close(fd);
 }
